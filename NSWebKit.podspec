@@ -95,7 +95,7 @@ Pod::Spec.new do |spec|
   # 匹配单个文件
   # 引用多个用逗号隔开
 
-  spec.source_files = "NSWebKit/NSWebKit/NSWebKit/NSWebKit.h"
+  spec.source_files = "NSWebKit/NSWebKit/*"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -116,9 +116,7 @@ Pod::Spec.new do |spec|
   #  Link your library with frameworks, or libraries. Libraries do not include
   #  the lib prefix of their name.
   #
-
-  # spec.framework  = "SomeFramework"
-  # spec.frameworks = "SomeFramework", "AnotherFramework"
+  spec.frameworks = "UIKit", "Foundation", "WebKit", "JavaScriptCore"
 
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"

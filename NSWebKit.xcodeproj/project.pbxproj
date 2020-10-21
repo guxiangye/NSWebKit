@@ -129,7 +129,12 @@
 		2F0699C62540379000272F14 /* NSWebKit */ = {
 			isa = PBXGroup;
 			children = (
-				2F0699FF25403DC500272F14 /* NSWebKit */,
+				2F069A1F25403FC900272F14 /* NSWebKit.h */,
+				2F069A0125403E0000272F14 /* NSWKWebViewController.h */,
+				2F069A0025403E0000272F14 /* NSWKWebViewController.m */,
+				2F069A0225403E0000272F14 /* MessageHandler */,
+				2F069A0625403E0000272F14 /* WKExtension */,
+				2F069A0B25403E0000272F14 /* WKWebViewPool */,
 				2F0699C72540379000272F14 /* AppDelegate.h */,
 				2F0699C82540379000272F14 /* AppDelegate.m */,
 				2F0699CA2540379000272F14 /* SceneDelegate.h */,
@@ -161,19 +166,6 @@
 				2F0699F02540379100272F14 /* Info.plist */,
 			);
 			path = NSWebKitUITests;
-			sourceTree = "<group>";
-		};
-		2F0699FF25403DC500272F14 /* NSWebKit */ = {
-			isa = PBXGroup;
-			children = (
-				2F069A1F25403FC900272F14 /* NSWebKit.h */,
-				2F069A0125403E0000272F14 /* NSWKWebViewController.h */,
-				2F069A0025403E0000272F14 /* NSWKWebViewController.m */,
-				2F069A0225403E0000272F14 /* MessageHandler */,
-				2F069A0625403E0000272F14 /* WKExtension */,
-				2F069A0B25403E0000272F14 /* WKWebViewPool */,
-			);
-			path = NSWebKit;
 			sourceTree = "<group>";
 		};
 		2F069A0225403E0000272F14 /* MessageHandler */ = {

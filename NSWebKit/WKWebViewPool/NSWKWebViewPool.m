@@ -7,7 +7,7 @@
 //
 
 #import "NSWKWebViewPool.h"
-#import "NSWKWebView.h"
+#import "NSWebKit.h"
 #import "WKWebView+ClearWebCache.h"
 
 @interface NSWKWebViewPool ()
