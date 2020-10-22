@@ -341,14 +341,24 @@ static NSInteger kTimeoutCount = 30;
     }
     // APPStore
     if ([url.absoluteString containsString:@"itunes.apple.com"]) {
-        [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:nil];
+        } else {
+            // Fallback on earlier versions
+            [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+        }
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
     // 调用电话
     if ([url.scheme isEqualToString:@"tel"]) {
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+            } else {
+                // Fallback on earlier versions
+                [[UIApplication sharedApplication] openURL:url];
+            }
             decisionHandler(WKNavigationActionPolicyCancel);
             return;
         }
