@@ -129,12 +129,9 @@
 		2F0699C62540379000272F14 /* NSWebKit */ = {
 			isa = PBXGroup;
 			children = (
-				2F069A1F25403FC900272F14 /* NSWebKit.h */,
-				2F069A0125403E0000272F14 /* NSWKWebViewController.h */,
-				2F069A0025403E0000272F14 /* NSWKWebViewController.m */,
 				2F069A0225403E0000272F14 /* MessageHandler */,
 				2F069A0625403E0000272F14 /* WKExtension */,
-				2F069A0B25403E0000272F14 /* WKWebViewPool */,
+				2F069A0B25403E0000272F14 /* WKWebKit */,
 				2F0699C72540379000272F14 /* AppDelegate.h */,
 				2F0699C82540379000272F14 /* AppDelegate.m */,
 				2F0699CA2540379000272F14 /* SceneDelegate.h */,
@@ -171,8 +168,6 @@
 		2F069A0225403E0000272F14 /* MessageHandler */ = {
 			isa = PBXGroup;
 			children = (
-				2F069A0325403E0000272F14 /* WeakScriptMessageHandler.h */,
-				2F069A0425403E0000272F14 /* WeakScriptMessageHandler.m */,
 			);
 			path = MessageHandler;
 			sourceTree = "<group>";
@@ -180,17 +175,22 @@
 		2F069A0625403E0000272F14 /* WKExtension */ = {
 			isa = PBXGroup;
 			children = (
-				2F069A0725403E0000272F14 /* WKWebView+ClearWebCache.h */,
-				2F069A0A25403E0000272F14 /* WKWebView+ClearWebCache.m */,
-				2F069A0925403E0000272F14 /* HtmlFileTransfer.h */,
-				2F069A0825403E0000272F14 /* HtmlFileTransfer.m */,
 			);
 			path = WKExtension;
 			sourceTree = "<group>";
 		};
-		2F069A0B25403E0000272F14 /* WKWebViewPool */ = {
+		2F069A0B25403E0000272F14 /* WKWebKit */ = {
 			isa = PBXGroup;
 			children = (
+				2F069A1F25403FC900272F14 /* NSWebKit.h */,
+				2F069A0125403E0000272F14 /* NSWKWebViewController.h */,
+				2F069A0025403E0000272F14 /* NSWKWebViewController.m */,
+				2F069A0325403E0000272F14 /* WeakScriptMessageHandler.h */,
+				2F069A0425403E0000272F14 /* WeakScriptMessageHandler.m */,
+				2F069A0925403E0000272F14 /* HtmlFileTransfer.h */,
+				2F069A0825403E0000272F14 /* HtmlFileTransfer.m */,
+				2F069A0725403E0000272F14 /* WKWebView+ClearWebCache.h */,
+				2F069A0A25403E0000272F14 /* WKWebView+ClearWebCache.m */,
 				2F069A1225403E0000272F14 /* NSWKWebViewPool.h */,
 				2F069A0D25403E0000272F14 /* NSWKWebViewPool.m */,
 				2F069A1025403E0000272F14 /* WKWebView+NSPost.h */,
@@ -200,7 +200,7 @@
 				2F069A0F25403E0000272F14 /* WKWebView+JavaScriptAlert.h */,
 				2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */,
 			);
-			path = WKWebViewPool;
+			path = WKWebKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

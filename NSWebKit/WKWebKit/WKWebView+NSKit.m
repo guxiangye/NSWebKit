@@ -28,7 +28,7 @@
 - (void)ns_wk_dealloc {
     [self ns_wk_dealloc];
     [self ns_wk_removeNoti];
-    
+
     //清除UserScript
     [self.configuration.userContentController removeAllUserScripts];
     //停止加载
@@ -75,21 +75,21 @@
         NSLog(@"%.2lf", height);
         if (height != self.ns_wk_webViewHeigt) {
             self.ns_wk_webViewHeigt = height;
-            
+
             CGRect frame = self.frame;
             frame.size.height = height;
             self.frame = frame;
-            
+
             if (self.ns_wk_getCurrentHeightBlock) {
                 self.ns_wk_getCurrentHeightBlock(height);
             }
         } else if (height == self.ns_wk_webViewHeigt && height > 0.f) {
-            
+
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
-    
+
     // 加载完成
     if (!self.loading) {
         if (self.ns_wk_isLoadingBlock) {
@@ -125,7 +125,7 @@
 
 - (void)setNs_wk_isAutoHeight:(BOOL)ns_wk_isAutoHeight {
     objc_setAssociatedObject(self, @selector(ns_wk_isAutoHeight), @(ns_wk_isAutoHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     // 监听高度变化 (暂时拿掉)
 //    if (ns_wk_isAutoHeight) {
 //        [self.scrollView addObserver:self forKeyPath:NS_WK_CONTENTSIZE options:NSKeyValueObservingOptionNew context:nil];
@@ -406,7 +406,7 @@ static NSInteger kTimeoutCount = 30;
             self.ns_wk_getCurrentHeightBlock(currentHeight);
         }];
     }
-    
+
     if (self.ns_wk_isAutoHeight) {
         NSString *heightString = @"document.body.scrollHeight";
         [self ns_wk_stringByEvaluateJavaScript:heightString completionHandler:^(id  _Nullable result, NSError * _Nullable error) {

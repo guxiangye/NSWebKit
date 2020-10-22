@@ -95,7 +95,21 @@ Pod::Spec.new do |spec|
   # 匹配单个文件
   # 引用多个用逗号隔开
 
-  spec.source_files = "NSWebKit/NSWebKit/*"
+  # spec.source_files = "NSWebKit/ViewController.{h,m}", "NSWebKit/NSWebKit.h", "NSWebKit/NSWKWebViewController.{h,m}"
+
+  spec.source_files = "NSWebKit/NSWebKit/*.{h,m}"
+
+  # spec.subspec 'WKExtension' do |s|
+  #   s.source_files = 'NSWebKit/WKExtension/*.{h,m}'
+  # end
+
+  # spec.subspec 'MessageHandler' do |s|
+  #   s.source_files = 'NSWebKit/MessageHandler/*.{h,m}'
+  # end
+
+  # spec.subspec 'WKWebViewPool' do |s|
+  #   s.source_files = 'NSWebKit/WKWebViewPool/WKWebView+*.{h,m}'
+  # end
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
