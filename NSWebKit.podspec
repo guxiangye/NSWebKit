@@ -95,6 +95,8 @@ Pod::Spec.new do |spec|
   # 匹配单个文件
   # 引用多个用逗号隔开
 
+  # spec.source_files = "NSWebKit/ViewController*.{h,m}"
+
   spec.source_files = "NSWebKit/WKWebViewPool/*.{h,m}"
 
   # spec.source_files = "NSWebKit/WKWebViewPool/NSWebKit.h"
