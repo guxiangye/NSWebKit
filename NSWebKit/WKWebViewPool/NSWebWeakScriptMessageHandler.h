@@ -1,5 +1,5 @@
 //
-//  WeakScriptMessageHandler.h
+//  NSWebWeakScriptMessageHandler.h
 //  OUYEEI_FINANCIAL
 //
 //  Created by 相晔谷 on 2019/7/5.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WeakScriptMessageHandler : NSObject
+@interface NSWebWeakScriptMessageHandler : NSObject
 <WKScriptMessageHandler>
 
 @property (nonatomic, weak) id<WKScriptMessageHandler> scriptDelegate;

@@ -1,14 +1,14 @@
 //
-//  WeakScriptMessageHandler.m
+//  NSWebWeakScriptMessageHandler.m
 //  OUYEEI_FINANCIAL
 //
 //  Created by 相晔谷 on 2019/7/5.
 //  Copyright © 2019 neil. All rights reserved.
 //
 
-#import "WeakScriptMessageHandler.h"
+#import "NSWebWeakScriptMessageHandler.h"
 
-@implementation WeakScriptMessageHandler
+@implementation NSWebWeakScriptMessageHandler
 
 - (instancetype)initWithDelegate:(id<WKScriptMessageHandler>)scriptDelegate {
     self = [super init];

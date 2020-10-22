@@ -6,11 +6,11 @@
 //  Copyright © 2019 neil. All rights reserved.
 //
 
-#import "NSWKWebViewPool.h"
+#import "NSWebViewPool.h"
 #import "NSWebKit.h"
 #import "WKWebView+ClearWebCache.h"
 
-@interface NSWKWebViewPool ()
+@interface NSWebViewPool ()
 
 @property (nonatomic, strong, readwrite) WKWebView *webView;
 @property (nonatomic, strong, readwrite) WKWebViewConfiguration *webConfig;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation NSWKWebViewPool
+@implementation NSWebViewPool
 
 + (void)load {
     
@@ -35,14 +35,14 @@
 }
 
 + (void)prepareWebView {
-    [[NSWKWebViewPool sharedInstance] _prepareReuseWebView];
+    [[NSWebViewPool sharedInstance] _prepareReuseWebView];
 }
 
 + (instancetype)sharedInstance {
     static dispatch_once_t once;
-    static NSWKWebViewPool *webViewPool = nil;
+    static NSWebViewPool *webViewPool = nil;
     dispatch_once(&once,^{
-        webViewPool = [[NSWKWebViewPool alloc] init];
+        webViewPool = [[NSWebViewPool alloc] init];
     });
     return webViewPool;
 }

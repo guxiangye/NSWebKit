@@ -1,5 +1,5 @@
 //
-//  HtmlFileTransfer.h
+//  NSWebHtmlFileTransfer.h
 //  OUYEEI_FINANCIAL
 //
 //  Created by 相晔谷 on 2019/7/5.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HtmlFileTransfer : NSObject
+@interface NSWebHtmlFileTransfer : NSObject
 
 + (NSURL *)fileURLForBuggyWKWebView8:(NSURL *)fileURL;
 

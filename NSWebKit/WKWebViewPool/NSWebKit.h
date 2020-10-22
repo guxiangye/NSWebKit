@@ -9,9 +9,9 @@
 #ifndef NSWebKit_h
 #define NSWebKit_h
 
-#import "NSWKWebViewController.h"
-#import "NSWKWebViewPool.h"
-#import "WeakScriptMessageHandler.h"
+#import "NSWebViewController.h"
+#import "NSWebViewPool.h"
+#import "NSWebWeakScriptMessageHandler.h"
 
 #import "WKWebView+NSKit.h"
 #import "WKWebView+JavaScriptAlert.h"

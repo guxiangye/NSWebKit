@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSWKWebViewPool : NSObject
+@interface NSWebViewPool : NSObject
 
 /**
  需要在 info.plist 中配置 WKWebViewForPrepare

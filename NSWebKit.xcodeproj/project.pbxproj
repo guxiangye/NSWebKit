@@ -16,12 +16,12 @@
 		2F0699DA2540379100272F14 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0699D92540379100272F14 /* main.m */; };
 		2F0699E42540379100272F14 /* NSWebKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0699E32540379100272F14 /* NSWebKitTests.m */; };
 		2F0699EF2540379100272F14 /* NSWebKitUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0699EE2540379100272F14 /* NSWebKitUITests.m */; };
-		2F069A1425403E0000272F14 /* NSWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0025403E0000272F14 /* NSWKWebViewController.m */; };
-		2F069A1525403E0000272F14 /* WeakScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0425403E0000272F14 /* WeakScriptMessageHandler.m */; };
-		2F069A1625403E0000272F14 /* HtmlFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0825403E0000272F14 /* HtmlFileTransfer.m */; };
+		2F069A1425403E0000272F14 /* NSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0025403E0000272F14 /* NSWebViewController.m */; };
+		2F069A1525403E0000272F14 /* NSWebWeakScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0425403E0000272F14 /* NSWebWeakScriptMessageHandler.m */; };
+		2F069A1625403E0000272F14 /* NSWebHtmlFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0825403E0000272F14 /* NSWebHtmlFileTransfer.m */; };
 		2F069A1725403E0000272F14 /* WKWebView+ClearWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0A25403E0000272F14 /* WKWebView+ClearWebCache.m */; };
 		2F069A1825403E0000272F14 /* WKWebView+NSPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0C25403E0000272F14 /* WKWebView+NSPost.m */; };
-		2F069A1925403E0000272F14 /* NSWKWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0D25403E0000272F14 /* NSWKWebViewPool.m */; };
+		2F069A1925403E0000272F14 /* NSWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0D25403E0000272F14 /* NSWebViewPool.m */; };
 		2F069A1A25403E0000272F14 /* WKWebView+NSKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A1125403E0000272F14 /* WKWebView+NSKit.m */; };
 		2F069A1B25403E0000272F14 /* WKWebView+JavaScriptAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */; };
 /* End PBXBuildFile section */
@@ -62,21 +62,21 @@
 		2F0699EA2540379100272F14 /* NSWebKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSWebKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0699EE2540379100272F14 /* NSWebKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSWebKitUITests.m; sourceTree = "<group>"; };
 		2F0699F02540379100272F14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F069A0025403E0000272F14 /* NSWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSWKWebViewController.m; sourceTree = "<group>"; };
-		2F069A0125403E0000272F14 /* NSWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWKWebViewController.h; sourceTree = "<group>"; };
-		2F069A0325403E0000272F14 /* WeakScriptMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakScriptMessageHandler.h; sourceTree = "<group>"; };
-		2F069A0425403E0000272F14 /* WeakScriptMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakScriptMessageHandler.m; sourceTree = "<group>"; };
+		2F069A0025403E0000272F14 /* NSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSWebViewController.m; sourceTree = "<group>"; };
+		2F069A0125403E0000272F14 /* NSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebViewController.h; sourceTree = "<group>"; };
+		2F069A0325403E0000272F14 /* NSWebWeakScriptMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebWeakScriptMessageHandler.h; sourceTree = "<group>"; };
+		2F069A0425403E0000272F14 /* NSWebWeakScriptMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSWebWeakScriptMessageHandler.m; sourceTree = "<group>"; };
 		2F069A0725403E0000272F14 /* WKWebView+ClearWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+ClearWebCache.h"; sourceTree = "<group>"; };
-		2F069A0825403E0000272F14 /* HtmlFileTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlFileTransfer.m; sourceTree = "<group>"; };
-		2F069A0925403E0000272F14 /* HtmlFileTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlFileTransfer.h; sourceTree = "<group>"; };
+		2F069A0825403E0000272F14 /* NSWebHtmlFileTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSWebHtmlFileTransfer.m; sourceTree = "<group>"; };
+		2F069A0925403E0000272F14 /* NSWebHtmlFileTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebHtmlFileTransfer.h; sourceTree = "<group>"; };
 		2F069A0A25403E0000272F14 /* WKWebView+ClearWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+ClearWebCache.m"; sourceTree = "<group>"; };
 		2F069A0C25403E0000272F14 /* WKWebView+NSPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+NSPost.m"; sourceTree = "<group>"; };
-		2F069A0D25403E0000272F14 /* NSWKWebViewPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSWKWebViewPool.m; sourceTree = "<group>"; };
+		2F069A0D25403E0000272F14 /* NSWebViewPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSWebViewPool.m; sourceTree = "<group>"; };
 		2F069A0E25403E0000272F14 /* WKWebView+NSKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+NSKit.h"; sourceTree = "<group>"; };
 		2F069A0F25403E0000272F14 /* WKWebView+JavaScriptAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+JavaScriptAlert.h"; sourceTree = "<group>"; };
 		2F069A1025403E0000272F14 /* WKWebView+NSPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+NSPost.h"; sourceTree = "<group>"; };
 		2F069A1125403E0000272F14 /* WKWebView+NSKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+NSKit.m"; sourceTree = "<group>"; };
-		2F069A1225403E0000272F14 /* NSWKWebViewPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWKWebViewPool.h; sourceTree = "<group>"; };
+		2F069A1225403E0000272F14 /* NSWebViewPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebViewPool.h; sourceTree = "<group>"; };
 		2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+JavaScriptAlert.m"; sourceTree = "<group>"; };
 		2F069A1F25403FC900272F14 /* NSWebKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,22 +183,22 @@
 			isa = PBXGroup;
 			children = (
 				2F069A1F25403FC900272F14 /* NSWebKit.h */,
-				2F069A0125403E0000272F14 /* NSWKWebViewController.h */,
-				2F069A0025403E0000272F14 /* NSWKWebViewController.m */,
-				2F069A0325403E0000272F14 /* WeakScriptMessageHandler.h */,
-				2F069A0425403E0000272F14 /* WeakScriptMessageHandler.m */,
-				2F069A0925403E0000272F14 /* HtmlFileTransfer.h */,
-				2F069A0825403E0000272F14 /* HtmlFileTransfer.m */,
-				2F069A0725403E0000272F14 /* WKWebView+ClearWebCache.h */,
-				2F069A0A25403E0000272F14 /* WKWebView+ClearWebCache.m */,
-				2F069A1225403E0000272F14 /* NSWKWebViewPool.h */,
-				2F069A0D25403E0000272F14 /* NSWKWebViewPool.m */,
+				2F069A1225403E0000272F14 /* NSWebViewPool.h */,
+				2F069A0D25403E0000272F14 /* NSWebViewPool.m */,
+				2F069A0125403E0000272F14 /* NSWebViewController.h */,
+				2F069A0025403E0000272F14 /* NSWebViewController.m */,
+				2F069A0325403E0000272F14 /* NSWebWeakScriptMessageHandler.h */,
+				2F069A0425403E0000272F14 /* NSWebWeakScriptMessageHandler.m */,
+				2F069A0925403E0000272F14 /* NSWebHtmlFileTransfer.h */,
+				2F069A0825403E0000272F14 /* NSWebHtmlFileTransfer.m */,
 				2F069A1025403E0000272F14 /* WKWebView+NSPost.h */,
 				2F069A0C25403E0000272F14 /* WKWebView+NSPost.m */,
 				2F069A0E25403E0000272F14 /* WKWebView+NSKit.h */,
 				2F069A1125403E0000272F14 /* WKWebView+NSKit.m */,
 				2F069A0F25403E0000272F14 /* WKWebView+JavaScriptAlert.h */,
 				2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */,
+				2F069A0725403E0000272F14 /* WKWebView+ClearWebCache.h */,
+				2F069A0A25403E0000272F14 /* WKWebView+ClearWebCache.m */,
 			);
 			path = WKWebViewPool;
 			sourceTree = "<group>";
@@ -332,16 +332,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F069A1925403E0000272F14 /* NSWKWebViewPool.m in Sources */,
-				2F069A1625403E0000272F14 /* HtmlFileTransfer.m in Sources */,
+				2F069A1925403E0000272F14 /* NSWebViewPool.m in Sources */,
+				2F069A1625403E0000272F14 /* NSWebHtmlFileTransfer.m in Sources */,
 				2F0699CF2540379000272F14 /* ViewController.m in Sources */,
-				2F069A1425403E0000272F14 /* NSWKWebViewController.m in Sources */,
+				2F069A1425403E0000272F14 /* NSWebViewController.m in Sources */,
 				2F069A1825403E0000272F14 /* WKWebView+NSPost.m in Sources */,
 				2F069A1A25403E0000272F14 /* WKWebView+NSKit.m in Sources */,
 				2F069A1725403E0000272F14 /* WKWebView+ClearWebCache.m in Sources */,
 				2F069A1B25403E0000272F14 /* WKWebView+JavaScriptAlert.m in Sources */,
 				2F0699C92540379000272F14 /* AppDelegate.m in Sources */,
-				2F069A1525403E0000272F14 /* WeakScriptMessageHandler.m in Sources */,
+				2F069A1525403E0000272F14 /* NSWebWeakScriptMessageHandler.m in Sources */,
 				2F0699DA2540379100272F14 /* main.m in Sources */,
 				2F0699CC2540379000272F14 /* SceneDelegate.m in Sources */,
 			);

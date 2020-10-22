@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSWKWebViewController : UIViewController
+@interface NSWebViewController : UIViewController
 
 #pragma mark - wkwebview 属性
 @property (nonatomic, strong) WKWebView * _Nullable webView;

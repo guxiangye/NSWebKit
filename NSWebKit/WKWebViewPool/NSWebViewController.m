@@ -6,14 +6,14 @@
 //  Copyright © 2019 neil. All rights reserved.
 //
 
-#import "NSWKWebViewController.h"
+#import "NSWebViewController.h"
 #import "NSWebKit.h"
 
-@interface NSWKWebViewController ()
+@interface NSWebViewController ()
 
 @end
 
-@implementation NSWKWebViewController
+@implementation NSWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +40,7 @@
 }
 
 - (void)setupUI {
-    self.webView = [[NSWKWebViewPool sharedInstance] getPoolWebViewForHolder:self];
+    self.webView = [[NSWebViewPool sharedInstance] getPoolWebViewForHolder:self];
     self.webView.hidden = NO;
     self.webView.backgroundColor = [UIColor clearColor];
     

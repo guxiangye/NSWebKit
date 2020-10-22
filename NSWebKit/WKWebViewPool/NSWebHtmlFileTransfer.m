@@ -1,14 +1,14 @@
 //
-//  HtmlFileTransfer.m
+//  NSWebHtmlFileTransfer.m
 //  OUYEEI_FINANCIAL
 //
 //  Created by 相晔谷 on 2019/7/5.
 //  Copyright © 2019 neil. All rights reserved.
 //
 
-#import "HtmlFileTransfer.h"
+#import "NSWebHtmlFileTransfer.h"
 
-@implementation HtmlFileTransfer
+@implementation NSWebHtmlFileTransfer
 
 + (NSURL *)fileURLForBuggyWKWebView8:(NSURL *)fileURL {
     NSError *error = nil;

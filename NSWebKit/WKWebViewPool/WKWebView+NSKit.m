@@ -8,8 +8,8 @@
 
 #import "WKWebView+NSKit.h"
 #import <objc/runtime.h>
-#import "HtmlFileTransfer.h"
-#import "WeakScriptMessageHandler.h"
+#import "NSWebHtmlFileTransfer.h"
+#import "NSWebWeakScriptMessageHandler.h"
 #import "WKWebView+JavaScriptAlert.h"
 
 @implementation WKWebView (NSKit)
@@ -295,7 +295,7 @@ static NSInteger kTimeoutCount = 30;
             NSURL *fileURL = [NSURL fileURLWithPath:htmlPath];
             [self loadFileURL:fileURL allowingReadAccessToURL:fileURL];
         } else {
-            NSURL *fileURL = [HtmlFileTransfer fileURLForBuggyWKWebView8:[NSURL fileURLWithPath:htmlPath]];
+            NSURL *fileURL = [NSWebHtmlFileTransfer fileURLForBuggyWKWebView8:[NSURL fileURLWithPath:htmlPath]];
             [self ns_wk_loadURL:fileURL];
         }
     }
@@ -314,7 +314,7 @@ static NSInteger kTimeoutCount = 30;
 - (void)ns_wk_addScriptMessageHandlerWithNameArray:(NSArray *)nameArray {
     if ([nameArray isKindOfClass:[NSArray class]] && nameArray.count > 0) {
         [nameArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.configuration.userContentController addScriptMessageHandler:[[WeakScriptMessageHandler alloc] initWithDelegate:self] name:obj];
+            [self.configuration.userContentController addScriptMessageHandler:[[NSWebWeakScriptMessageHandler alloc] initWithDelegate:self] name:obj];
         }];
     }
 }
