@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "TestObject.h"
 
 @interface ViewController ()
 

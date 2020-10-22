@@ -24,6 +24,7 @@
 		2F069A1925403E0000272F14 /* NSWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A0D25403E0000272F14 /* NSWebViewPool.m */; };
 		2F069A1A25403E0000272F14 /* WKWebView+NSKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A1125403E0000272F14 /* WKWebView+NSKit.m */; };
 		2F069A1B25403E0000272F14 /* WKWebView+JavaScriptAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */; };
+		2F9448DB2541492F00329D88 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9448DA2541492F00329D88 /* TestObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		2F069A1225403E0000272F14 /* NSWebViewPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebViewPool.h; sourceTree = "<group>"; };
 		2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+JavaScriptAlert.m"; sourceTree = "<group>"; };
 		2F069A1F25403FC900272F14 /* NSWebKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSWebKit.h; sourceTree = "<group>"; };
+		2F9448D92541492F00329D88 /* TestObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		2F9448DA2541492F00329D88 /* TestObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 				2F0699CB2540379000272F14 /* SceneDelegate.m */,
 				2F0699CD2540379000272F14 /* ViewController.h */,
 				2F0699CE2540379000272F14 /* ViewController.m */,
+				2F9448D92541492F00329D88 /* TestObject.h */,
+				2F9448DA2541492F00329D88 /* TestObject.m */,
 				2F0699D02540379000272F14 /* Main.storyboard */,
 				2F0699D32540379100272F14 /* Assets.xcassets */,
 				2F0699D52540379100272F14 /* LaunchScreen.storyboard */,
@@ -335,6 +340,7 @@
 				2F069A1925403E0000272F14 /* NSWebViewPool.m in Sources */,
 				2F069A1625403E0000272F14 /* NSWebHtmlFileTransfer.m in Sources */,
 				2F0699CF2540379000272F14 /* ViewController.m in Sources */,
+				2F9448DB2541492F00329D88 /* TestObject.m in Sources */,
 				2F069A1425403E0000272F14 /* NSWebViewController.m in Sources */,
 				2F069A1825403E0000272F14 /* WKWebView+NSPost.m in Sources */,
 				2F069A1A25403E0000272F14 /* WKWebView+NSKit.m in Sources */,
