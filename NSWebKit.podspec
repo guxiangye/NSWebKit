@@ -97,7 +97,7 @@ Pod::Spec.new do |spec|
 
   # spec.source_files = "NSWebKit/ViewController.{h,m}", "NSWebKit/NSWebKit.h", "NSWebKit/NSWKWebViewController.{h,m}"
 
-  spec.source_files = "NSWebKit/NSWebKit/*.{h,m}"
+  spec.source_files = "NSWebKit/WKWebViewPool/*.{h,m}"
 
   # spec.subspec 'WKExtension' do |s|
   #   s.source_files = 'NSWebKit/WKExtension/*.{h,m}'

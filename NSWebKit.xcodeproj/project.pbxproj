@@ -131,7 +131,7 @@
 			children = (
 				2F069A0225403E0000272F14 /* MessageHandler */,
 				2F069A0625403E0000272F14 /* WKExtension */,
-				2F069A0B25403E0000272F14 /* WKWebKit */,
+				2F069A0B25403E0000272F14 /* WKWebViewPool */,
 				2F0699C72540379000272F14 /* AppDelegate.h */,
 				2F0699C82540379000272F14 /* AppDelegate.m */,
 				2F0699CA2540379000272F14 /* SceneDelegate.h */,
@@ -179,7 +179,7 @@
 			path = WKExtension;
 			sourceTree = "<group>";
 		};
-		2F069A0B25403E0000272F14 /* WKWebKit */ = {
+		2F069A0B25403E0000272F14 /* WKWebViewPool */ = {
 			isa = PBXGroup;
 			children = (
 				2F069A1F25403FC900272F14 /* NSWebKit.h */,
@@ -200,7 +200,7 @@
 				2F069A0F25403E0000272F14 /* WKWebView+JavaScriptAlert.h */,
 				2F069A1325403E0000272F14 /* WKWebView+JavaScriptAlert.m */,
 			);
-			path = WKWebKit;
+			path = WKWebViewPool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

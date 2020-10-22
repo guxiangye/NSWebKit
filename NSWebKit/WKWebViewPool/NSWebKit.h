@@ -9,14 +9,14 @@
 #ifndef NSWebKit_h
 #define NSWebKit_h
 
-//#import "NSWKWebViewController.h"
-//#import "NSWKWebViewPool.h"
-//#import "WeakScriptMessageHandler.h"
+#import "NSWKWebViewController.h"
+#import "NSWKWebViewPool.h"
+#import "WeakScriptMessageHandler.h"
 
-//#import "WKWebView+NSKit.h"
-//#import "WKWebView+JavaScriptAlert.h"
-//#import "WKWebView+NSPost.h"
-//#import "WKWebView+ClearWebCache.h"
+#import "WKWebView+NSKit.h"
+#import "WKWebView+JavaScriptAlert.h"
+#import "WKWebView+NSPost.h"
+#import "WKWebView+ClearWebCache.h"
 
 #define WKWebViewForPrepare_KEY [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"WKWebViewForPrepare"] boolValue]
 
