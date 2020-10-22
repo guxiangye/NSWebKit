@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NSWebKit"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "内部 NSWebKit. 通用组件"
 
   # This description is used to generate tags and improve search results.
@@ -95,7 +95,7 @@ Pod::Spec.new do |spec|
   # 匹配单个文件
   # 引用多个用逗号隔开
 
-  spec.source_files = "NSWebKit/ViewController*.{h,m}", "NSWebKit/TestObject*.{h,m}"
+  spec.source_files = "NSWebKit/ViewController.{h,m}", "NSWebKit/TestObject.{h,m}"
 
   # spec.source_files = "NSWebKit/WKWebViewPool/*.{h,m}"
 
