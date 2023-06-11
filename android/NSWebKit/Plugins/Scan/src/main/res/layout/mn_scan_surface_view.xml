@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--预览View-->
+    <com.nswebkit.plugins.scan.scan.view.ResizeAbleSurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <!--扫描框-->
+    <com.nswebkit.plugins.scan.scan.view.ViewfinderView
+        android:id="@+id/viewfinder_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <!--放大缩小控件-->
+    <com.nswebkit.plugins.scan.scan.view.ZoomControllerView
+        android:id="@+id/zoom_controller_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--扫描结果点-->
+    <com.nswebkit.plugins.scan.scan.view.ScanResultPointView
+        android:id="@+id/result_point_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

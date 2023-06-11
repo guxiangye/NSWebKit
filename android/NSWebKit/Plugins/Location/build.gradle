@@ -1,0 +1,142 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+ext {
+    versionName = rootProject.ext.plugin_location_version
+    libName = "NSLocationPlugin"
+}
+
+android {
+    namespace 'com.nswebkit.plugins.location'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            main.res.srcDirs += ['src/main/res']
+        }
+    }
+
+//    repositories {
+//        flatDir {
+//            dirs 'libs'   // aar目录
+//        }
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    libraryVariants.all { variant ->
+        variant.buildConfigField 'String', 'BUILD_TIME', "\"${releaseTime()}\""
+        variant.buildConfigField 'String', 'versionName', "\"${project.ext.versionName}\""
+    }
+
+    libraryVariants.all { variant ->
+        def backupFolder = "${buildDir}/AAR"
+        def fileName = "${project.ext.libName}${variant.flavorName}_${getVersionName()}" +
+                "_${variant.buildType.name}_${releaseTime()}.aar"
+        variant.outputs.all { output ->
+            Task copyAndRenameAARTask = project.task("copyAndRename${variant.name.capitalize()}AAR",
+                    type: Copy) {
+                from output.outputFile.getParent()
+                into backupFolder
+                include output.outputFileName
+                rename(output.outputFileName, fileName)
+            }
+            copyAndRenameAARTask.dependsOn(variant.assemble)
+            copyAndRenameAARTask.mustRunAfter(variant.assemble)
+            variant.assemble.finalizedBy(copyAndRenameAARTask)
+        }
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8"))
+}
+
+def getVersionName() {
+    String version = ""
+    String[] versionSplit = project.ext.versionName.split("\\.")
+    for (int i = 0; i < versionSplit.length; i++) {
+        if (i < 3) {
+            if (i != 0) {
+                version += "."
+            }
+            version += versionSplit[i]
+        }
+    }
+    return version
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    api files('libs/AMap_Location_V6.2.0_20221026.jar')
+    compileOnly project(path: ':Cordova')
+    compileOnly project(path: ':Core')
+}
+
+task convertAARToAndroidx(type: Exec) {
+    def aarCmd = [
+            './../jetifier-standalone/bin/jetifier-standalone', '-i',"build/outputs/aar/${project.ext.libName}-release.aar",'-o',"build/outputs/androidx/${project.ext.libName}-release.aar"
+    ]
+    commandLine aarCmd
+}
+
+convertAARToAndroidx.dependsOn(build)
+
+publishing {
+    publications {
+        makeAAR(MavenPublication) {
+            groupId 'com.nswebkit'
+            version "$project.ext.versionName"
+            artifactId "$project.ext.libName"
+            artifact("$buildDir/outputs/aar/${project.ext.libName}-release.aar")
+        }
+        makeAARAndroidx(MavenPublication) {
+            groupId 'com.nswebkit'
+            version "androidx-$project.ext.versionName"
+            artifactId "$project.ext.libName"
+            artifact("$buildDir/outputs/androidx/${project.ext.libName}-release.aar")
+        }
+    }
+    repositories {
+        maven {
+            url = 'http://xxx.com/content/repositories/thirdparty'
+            allowInsecureProtocol true
+            credentials {
+                username "dev"
+                password "password"
+            }
+        }
+    }
+}

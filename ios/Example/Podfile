@@ -1,0 +1,17 @@
+#use_frameworks!
+#source 'https://cdn.cocoapods.org/'
+platform :ios, '9.0'
+
+abstract_target 'Common' do
+    pod 'NSWebKit', :path => '../NSWebKit'
+    pod 'NSWebKit/Plugins/Basic', :path => '../NSWebKit'
+    
+    # 自定义插件
+    pod 'NSWebKit/Plugins/CustomCamera', :path => '../NSWebKit'
+    pod 'NSWebKit/Plugins/Scan', :path => '../NSWebKit'
+    pod 'NSWebKit/Plugins/Location', :path => '../NSWebKit'
+    pod 'NSWebKit/Plugins/Share', :path => '../NSWebKit'
+    
+    target 'Example' do
+    end
+end

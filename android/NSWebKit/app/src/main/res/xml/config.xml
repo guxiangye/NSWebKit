@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget
+  id="com.nswebkit"
+  version="1.0.0">
+  <preference
+    name="errorUrl"
+    value="weberror.html"></preference>
+  <preference
+    name="loadUrlTimeoutValue"
+    value="60000"></preference>
+
+  <access
+    origin="*"
+    subdomains="true" />
+
+  <allow-navigation href="*" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+
+  <feature name="WhitelistPlugin">
+    <param
+      name="android-package"
+      value="com.nswebkit.core.plugin.NSWhitelistPlugin" />
+    <param
+      name="onload"
+      value="true" />
+  </feature>
+  <feature name="InputCamera">
+    <param
+        name="android-package"
+        value="com.nswebkit.core.plugin.NSCameraPlugin" />
+  </feature>
+  <feature name="NetworkStatus">
+    <param
+      name="android-package"
+      value="org.apache.cordova.networkinformation.NetworkManager" />
+  </feature>
+  <preference
+    name="KeepRunning"
+    value="true" />
+  <feature name="Device">
+    <param
+      name="android-package"
+      value="org.apache.cordova.device.Device" />
+  </feature>
+  <feature name="BackgroundMode">
+    <param
+      name="android-package"
+      value="org.apache.cordova.background.BackgroundMode" />
+  </feature>
+  <feature name="BackgroundModeExt">
+    <param
+      name="android-package"
+      value="org.apache.cordova.background.BackgroundModeExt" />
+  </feature>
+  <feature name="InAppBrowser">
+    <param
+      name="android-package"
+      value="org.apache.cordova.inappbrowser.InAppBrowser" />
+  </feature>
+
+  <feature name="NSBasicPlugin">
+    <param
+        name="android-package"
+        value="com.nswebkit.plugins.basic.NSBasicPlugin" />
+  </feature>
+
+  <feature name="NSCustomCameraPlugin">
+    <param
+        name="android-package"
+        value="com.nswebkit.plugins.customcamera.NSCustomCameraPlugin" />
+  </feature>
+
+  <feature name="NSScanPlugin">
+    <param
+        name="android-package"
+        value="com.nswebkit.plugins.scan.NSScanPlugin" />
+  </feature>
+
+  <feature name="NSLocationPlugin">
+    <param
+      name="android-package"
+      value="com.nswebkit.plugins.location.NSLocationPlugin" />
+  </feature>
+
+  <feature name="NSSharePlugin">
+    <param
+        name="android-package"
+        value="com.nswebkit.plugins.share.NSSharePlugin" />
+  </feature>
+</widget>

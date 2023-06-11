@@ -1,0 +1,21 @@
+ext {
+    compileSdkVersion = 31
+    cordova_version = "9.0.0"
+    core_version = "1.0.0"
+    plugin_basic_version = "1.0.0"
+    plugin_custom_version = "1.0.0"
+    plugin_device_version = "1.0.0"
+    plugin_file_version = "1.0.0"
+    plugin_networkInformation_version = "1.0.0"
+    plugin_customCamera_version = "1.0.0"
+    plugin_scan_version = "1.0.0"
+    plugin_location_version = "1.0.0"
+    plugin_share_version = "1.0.0"
+
+    android = [
+            minSdkVersion   : 22,
+            targetSdkVersion: 31,
+            versionCode     : 100,
+            versionName     : '1.0.0'
+    ]
+}

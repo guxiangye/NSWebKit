@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "NSWebKit"
+include ':app'
+include ':Cordova'
+include ':Core'
+include ':Plugins:Basic'
+include ':Plugins:CustomCamera'
+include ':Plugins:Scan'
+include ':Plugins:Location'
+include ':Plugins:Share'

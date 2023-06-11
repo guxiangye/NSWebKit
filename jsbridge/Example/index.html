@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NSWebKit Api Example</title>
+    <style type="text/css">
+        * {
+            font-size: 40px;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+    <script src="./ns.js"></script>
+    <script>
+        var vConsole = new VConsole();
+    </script>
+    <style>
+        .app {
+            padding: 100px 20px;
+        }
+
+        .app > .item {
+            width: 100%;
+        }
+
+        .app > .item button {
+            width: 100%;
+            padding: 20px 0;
+            font-size: 40px;
+            background: #A7A7A7;
+        }
+
+        .item + .item {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            height: 100px;
+            font-size: 40px;
+            color: blue;
+            text-decoration: underline;
+            text-underline: blue;
+        }
+        input {
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="item">
+        <button type='button' onclick="openAppAuthorizeSetting()">跳转当前App的系统授权管理⻚</button>
+    </div>
+    <div class="item">
+        <button type='button' onclick="getAppInfoSync()">
+            获取当前App相关信息
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick="setBadgeCount({'count':10})">
+            设置APP角标
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='navigateTo({"url":"https://m.baidu.com"})'>
+            打开新页面
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='navigateBack()'>
+            返回上一级
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='openExternalBrowser({"url":"https://m.baidu.com"})'>
+            用外部浏览器打开⻚面
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick="setNavigationBarTheme({'hidden':false})">
+            显示导航栏
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setNavigationBarTheme({"hidden":true})'>
+            隐藏导航栏
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setNavigationBarTheme({"title":"自定义标题"})'>
+            设置标题文字
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setNavigationBarTheme({"color":"#EEEEEE"})'>
+            设置导航栏颜色
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setNavigationBarTheme({"color":"#EAAAAA"})'>
+            设置导航栏颜色2
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setNavigationBarTheme({"titleColor":"#FFD700"})'>
+            设置标题文字颜色
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setNavigationBarTheme({"actionTxt":"按钮"})'>
+            设置导航右侧按钮文字
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='getDeviceInfoSync()'>
+            获取设备相关信息
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='getClipboardDataSync()'>
+            获取系统剪贴板的内容
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='setClipboardData({"data":"新设置的内容"})'>
+            设置系统剪贴板的内容
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='makePhoneCall({"phoneNumber":"10000"})'>
+            拨打电话
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='getNetworkType()'>
+            获取设备网络状态
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='scanCode()'>
+            扫码
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='takePhoto()'>
+            拍照
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='chooseAlbum()'>
+            相册
+        </button>
+    </div>
+    <div class="item">
+        <label for="input1">拉起相册：</label>
+        <input id="input1" type="file" accept="image/*" style="display: none">
+        <label for="input2">拉起相机：</label>
+        <input id="input2" type="file" accept="image/*" capture="camera" style="display: none">
+        <label for="input3">拉起摄像头：</label>
+        <input id="input3" type="file" accept="video/*" capture="camcorder" style="display: none">
+        <img src="" id="v_photoA" style="width: 100%;height: 50%">
+    </div>
+</div>
+<script>
+    window.ns.setNavigationBarTheme({"hidden":true}).then((result)=>{
+        console.log(result);
+    });
+    function openAppAuthorizeSetting(){
+        window.ns.openAppAuthorizeSetting().then((result)=>{
+            console.log(result);
+        });
+    }
+    function getAppInfoSync(){
+        var result = window.ns.getAppInfoSync();
+        console.log(result);
+        alert(JSON.stringify(result))
+    }
+    function setBadgeCount(param){
+        window.ns.setBadgeCount(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function navigateTo(param){
+        window.ns.navigateTo(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function navigateBack(){
+        window.ns.navigateBack().then((result)=>{
+            console.log(result);
+        });
+    }
+    function openExternalBrowser(param){
+        window.ns.openExternalBrowser(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function setNavigationBarTheme(param){
+         window.ns.setNavigationBarTheme(param).then((result)=>{
+          console.log(result);
+         });
+    }
+    function navigateBack(){
+        window.ns.navigateBack().then((result)=>{
+            console.log(result);
+        });
+    }
+    function getDeviceInfoSync(){
+        var result = window.ns.getDeviceInfoSync();
+        console.log(result);
+        alert(JSON.stringify(result))
+    }
+    function getClipboardDataSync(){
+        var result = window.ns.getClipboardDataSync();
+        console.log(result);
+        alert(JSON.stringify(result))
+    }
+    function setClipboardData(param){
+        window.ns.setClipboardData(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function makePhoneCall(param){
+        window.ns.makePhoneCall(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function getNetworkType(){
+        var result = window.ns.getNetworkTypeSync();
+        console.log(result);
+        alert(JSON.stringify(result))
+        window.ns.onNetworkStatusChange((res) => {
+            alert(JSON.stringify(res))
+        })
+    }
+    function scanCode(param){
+        window.ns.scanCode(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function saveImageToPhotosAlbum(param){
+        window.ns.saveImageToPhotosAlbum(param).then((result)=>{
+            console.log(result);
+        });
+    }
+    function takePhoto() {
+        const params = {sourceType: 'camera', count: 1}
+        window.ns.chooseImage(params).then((result)=>{
+            console.log(result);
+
+        });
+    }
+    function chooseAlbum() {
+        const params = {sourceType: 'album', count: 9}
+        window.ns.chooseImage(params).then((result)=>{
+            console.log(result);
+        });
+    }
+</script>
+
+</body>
+</html>
