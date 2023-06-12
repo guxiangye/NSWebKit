@@ -24,8 +24,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    NSString *url =  @"http://192.168.31.20:8080";
-    NSWebViewController *webVC = [NSWebViewController getWebviewControllerWithConfig:@{ @"hidden": @YES, @"url": url, @"translucentStatusBars": @YES } fetchInitialUrlCallBack:nil fetchUserAgentCallback:nil startedCallback:nil finishedCallback:nil receiveTitleCallback:nil webResourceErrorCallback:nil];
+    NSString *url = @"www/index.html";
+    NSWebViewController *webVC = [NSWebViewController getWebviewControllerWithConfig:@{ @"hidden": @YES, @"url": url, @"translucentStatusBars": @YES } fetchInitialUrlCallBack:NULL fetchUserAgentCallback:NULL startedCallback:NULL finishedCallback:NULL receiveTitleCallback:NULL webResourceErrorCallback:NULL];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webVC];
     self.window.rootViewController = nav;
 

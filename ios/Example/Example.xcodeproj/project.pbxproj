@@ -17,8 +17,8 @@
 		2F7C82822A205B8C006986B3 /* ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C82812A205B8C006986B3 /* ExampleTests.m */; };
 		2F7C828C2A205B8C006986B3 /* ExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C828B2A205B8C006986B3 /* ExampleUITests.m */; };
 		2F7C828E2A205B8C006986B3 /* ExampleUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7C828D2A205B8C006986B3 /* ExampleUITestsLaunchTests.m */; };
-		2FB219E82A34D558002C1078 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FB219E72A34D558002C1078 /* index.html */; };
 		2FBF73DF2A20F5BE000CD815 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF73DE2A20F5BE000CD815 /* config.xml */; };
+		2FE101BD2A36EEB600E4986F /* www in Resources */ = {isa = PBXBuildFile; fileRef = 2FE101BC2A36EEB600E4986F /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		2F7C82872A205B8C006986B3 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7C828B2A205B8C006986B3 /* ExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleUITests.m; sourceTree = "<group>"; };
 		2F7C828D2A205B8C006986B3 /* ExampleUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleUITestsLaunchTests.m; sourceTree = "<group>"; };
-		2FB219E72A34D558002C1078 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		2FBF73DE2A20F5BE000CD815 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		2FE101BC2A36EEB600E4986F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		A4ADD739F9E2988EBF756B91 /* libPods-Common-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Common-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C250DFE649386263C863E2E2 /* Pods-Common-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Example.release.xcconfig"; path = "Target Support Files/Pods-Common-Example/Pods-Common-Example.release.xcconfig"; sourceTree = "<group>"; };
 		C9DA26995DB6B385E09FE349 /* Pods-Common-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-Example.debug.xcconfig"; path = "Target Support Files/Pods-Common-Example/Pods-Common-Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,8 +124,8 @@
 				2F7C82662A205B8B006986B3 /* AppDelegate.m */,
 				2F7C826B2A205B8B006986B3 /* ViewController.h */,
 				2F7C826C2A205B8B006986B3 /* ViewController.m */,
+				2FE101BC2A36EEB600E4986F /* www */,
 				2FBF73DE2A20F5BE000CD815 /* config.xml */,
-				2FB219E72A34D558002C1078 /* index.html */,
 				2F7C826E2A205B8B006986B3 /* Main.storyboard */,
 				2F7C82712A205B8C006986B3 /* Assets.xcassets */,
 				2F7C82732A205B8C006986B3 /* LaunchScreen.storyboard */,
@@ -266,9 +266,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FB219E82A34D558002C1078 /* index.html in Resources */,
 				2F7C82752A205B8C006986B3 /* LaunchScreen.storyboard in Resources */,
 				2F7C82722A205B8C006986B3 /* Assets.xcassets in Resources */,
+				2FE101BD2A36EEB600E4986F /* www in Resources */,
 				2F7C82702A205B8B006986B3 /* Main.storyboard in Resources */,
 				2FBF73DF2A20F5BE000CD815 /* config.xml in Resources */,
 			);

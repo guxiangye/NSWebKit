@@ -113,13 +113,13 @@ public class NSCustomCameraPlugin extends CordovaPlugin {
             sourceType = jsonObject.optString("sourceType", "camera");//默认拍照
             count = jsonObject.optInt("count", 1);
             finalSizeType = null;
-            if (sizeType.length() == 1) {
+            if (sizeType !=null && sizeType.length() == 1) {
                 if (sizeType.get(0).equals("original")) {//只要原图
                     finalSizeType = "original";
                 } else if (sizeType.get(0).equals("compressed")) {//只要缩略图
                     finalSizeType = "compressed";
                 }
-            } else if (sizeType.length() == 2 && ((sizeType.get(0).equals("original") && sizeType.get(1).equals("compressed")) || (sizeType.get(0).equals("compressed") && sizeType.get(1).equals("original")))) {//原图缩略图都要
+            } else if (sizeType !=null && sizeType.length() == 2 && ((sizeType.get(0).equals("original") && sizeType.get(1).equals("compressed")) || (sizeType.get(0).equals("compressed") && sizeType.get(1).equals("original")))) {//原图缩略图都要
                 finalSizeType = "all";
             } else {//默认压缩图
                 finalSizeType = "compressed";

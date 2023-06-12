@@ -6,12 +6,6 @@
   android:layout_height="match_parent"
   android:background="@color/white"
   tools:context=".MainActivity">
-  <Button
-    android:layout_width="100dp"
-    android:layout_height="50dp"
-    android:onClick="ddd"
-    android:text="集测环境H5页面"
-    tools:ignore="MissingConstraints,OnClick" />
 
   <Button
       android:layout_width="100dp"

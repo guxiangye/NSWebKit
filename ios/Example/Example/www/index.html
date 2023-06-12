@@ -137,7 +137,7 @@
         </button>
     </div>
     <div class="item">
-        <button type='button' onclick='scanCode({scanType: "qrCode"})'>
+        <button type='button' onclick='scanCode({scanType: ["qrCode"]})'>
             扫码
         </button>
     </div>
@@ -162,7 +162,7 @@
     </div>
 </div>
 <script>
-    window.ns.setNavigationBarTheme({"hidden":true}).then((result)=>{
+    window.ns.setNavigationBarTheme({"hidden":false}).then((result)=>{
         console.log(result);
     });
     function openAppAuthorizeSetting(){

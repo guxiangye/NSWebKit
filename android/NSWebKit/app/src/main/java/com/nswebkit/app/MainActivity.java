@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NSApplicationProvider.getInstance().attachContext(getApplicationContext());
+        NSApplicationProvider.getInstance().attachContext(this);
 
         NSServiceProxy.getInstance().setInitInterface(new NSInitInterface() {
             @NonNull
@@ -52,15 +52,9 @@ public class MainActivity extends Activity {
         });
     }
 
-    public void ddd(View view) {
-        Intent intent = new Intent(this, NSWebViewActivity.class);
-        intent.putExtra("url", "file:///android_asset/cordovaTest.html");
-        startActivity(intent);
-    }
-
     public void aaa(View view) {
         Intent intent = new Intent(this, NSWebViewActivity.class);
-        intent.putExtra("url", "https://exttest.shengpay.com/zz-ext-h5-association/h5/#/createOrder/index/index");
+        intent.putExtra("url", "file:///android_asset/www/index.html");
         startActivity(intent);
     }
 }

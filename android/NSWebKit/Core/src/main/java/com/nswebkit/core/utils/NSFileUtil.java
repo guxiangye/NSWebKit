@@ -36,10 +36,12 @@ public class NSFileUtil {
 
     //android，添加js需要包裹在自执行函数里面
     public static String loadAssetJs(String assetFilename) {
-        String addJs = loadAssetAsStringTrimComment(assetFilename);
-        String js = new StringBuffer().append("var newscript = document.createElement(\"script\");")
-                .append("newscript.innerHTML =" + "(function() {" + addJs + "})();")
-                .append("document.head.appendChild(newscript);").toString();
-        return js;
+//        String addJs = loadAssetAsStringTrimComment(assetFilename);
+//        String js = new StringBuffer().append("var newscript = document.createElement(\"script\");")
+//                .append("newscript.innerHTML =" + "(function() {" + addJs + "})();")
+//                .append("document.head.appendChild(newscript);").toString();
+//        return js;
+
+        return loadAssetAsStringTrimComment(assetFilename);
     }
 }

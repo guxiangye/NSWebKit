@@ -23,7 +23,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            assets.srcDirs = ['assets']
+            assets.srcDirs = ['src/main/assets']
             main.res.srcDirs += ['src/main/res']
         }
     }

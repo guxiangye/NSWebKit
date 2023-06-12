@@ -26,8 +26,10 @@
         BOOL hideAlbum = [[param objectForKey:@"hideAlbum"]boolValue];
         NSArray *scanType =  [param objectForKey:@"scanType"];
 
+        if (scanType && [scanType isKindOfClass:[NSArray class]]) {
+            vc.supportScanTypeArray = scanType;
+        }
         vc.hideAlbum = hideAlbum;
-        vc.supportScanTypeArray = scanType;
     }
 
     vc.scanResultBlock = ^(NSDictionary *result) {

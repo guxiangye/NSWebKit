@@ -510,24 +510,22 @@ console.log(TAG, "start");
 
 
 
-(function () {
-    const ns = {
-        ..._impl_ns_core_impl__WEBPACK_IMPORTED_MODULE_0__.jsPrivateObj,
-        ..._impl_ns_basic_impl__WEBPACK_IMPORTED_MODULE_1__.basic,
-        ..._impl_ns_customCamera_impl__WEBPACK_IMPORTED_MODULE_2__.customCamera,
-        ..._impl_ns_scan_impl__WEBPACK_IMPORTED_MODULE_3__.scan,
-        ..._impl_ns_location_impl__WEBPACK_IMPORTED_MODULE_4__.location,
-        ..._impl_ns_share_impl__WEBPACK_IMPORTED_MODULE_5__.share,
-    };
-    function spIsReady() {
-        const readyEvent = new Event("NSReady");
-        document.dispatchEvent(readyEvent);
-    }
-    if (!window.ns) {
-        window.ns = ns;
-        spIsReady();
-    }
-})();
+const ns = {
+    ..._impl_ns_core_impl__WEBPACK_IMPORTED_MODULE_0__.jsPrivateObj,
+    ..._impl_ns_basic_impl__WEBPACK_IMPORTED_MODULE_1__.basic,
+    ..._impl_ns_customCamera_impl__WEBPACK_IMPORTED_MODULE_2__.customCamera,
+    ..._impl_ns_scan_impl__WEBPACK_IMPORTED_MODULE_3__.scan,
+    ..._impl_ns_location_impl__WEBPACK_IMPORTED_MODULE_4__.location,
+    ..._impl_ns_share_impl__WEBPACK_IMPORTED_MODULE_5__.share,
+};
+function spIsReady() {
+    const readyEvent = new Event("NSReady");
+    document.dispatchEvent(readyEvent);
+}
+if (!window.ns) {
+    window.ns = ns;
+    spIsReady();
+}
 
 })();
 
