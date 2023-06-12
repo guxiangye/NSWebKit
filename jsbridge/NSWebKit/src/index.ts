@@ -10,21 +10,19 @@ import {scan} from "./impl/ns.scan.impl"
 import {location} from "./impl/ns.location.impl"
 import {share} from "./impl/ns.share.impl"
 
-;(function () {
-    const ns: NSWebKit = <NSWebKit>{
-        ...jsPrivateObj,
-        ...basic,
-        ...customCamera,
-        ...scan,
-        ...location,
-        ...share,
-    }
-    function spIsReady() {
-        const readyEvent = new Event("NSReady");
-        document.dispatchEvent(readyEvent);
-    }
-    if (!window.ns) {
-        window.ns = ns;
-        spIsReady();
-    }
-})();
+const ns: NSWebKit = <NSWebKit>{
+    ...jsPrivateObj,
+    ...basic,
+    ...customCamera,
+    ...scan,
+    ...location,
+    ...share,
+}
+function spIsReady() {
+    const readyEvent = new Event("NSReady");
+    document.dispatchEvent(readyEvent);
+}
+if (!window.ns) {
+    window.ns = ns;
+    spIsReady();
+}
