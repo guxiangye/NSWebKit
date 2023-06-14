@@ -1,126 +1,372 @@
-# SDPCordovaLib
+# NSWebKit 概括
+## 1.应用场景
+随着大前端技术体系的完善，以及小程序的普及，在越来越多的业务中展现出了它的优势。
+NSWebKit就是针对这一Native/H5的混合开发场景研发的，我们为 web开发者提供了类似主流小程序一样的研发体验。
 
-[![CI Status](https://img.shields.io/travis/高鹏程/SDPCordovaLib.svg?style=flat)](https://travis-ci.org/高鹏程/SDPCordovaLib)
-[![Version](https://img.shields.io/cocoapods/v/SDPCordovaLib.svg?style=flat)](https://cocoapods.org/pods/SDPCordovaLib)
-[![License](https://img.shields.io/cocoapods/l/SDPCordovaLib.svg?style=flat)](https://cocoapods.org/pods/SDPCordovaLib)
-[![Platform](https://img.shields.io/cocoapods/p/SDPCordovaLib.svg?style=flat)](https://cocoapods.org/pods/SDPCordovaLib)
+## 2.框架设计
+### 底层技术
+关于H5和Native之间通信,我们选用的是Cordova开源移动框架.
+Cordova是一套开源移动开发框架，开发者可以通过它用标准WEB技术：HTML5、CSS3、JavaScript，来开发跨平台App。
+Cordova目前支持的平台有：Android、 Blackberry 10、iOS、OS X、Ubuntu、Windows、WP8.
 
-## Example
+## 3.使用说明
+### H5 接入说明
+#### js 项目：
+无需引入
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+#### ts 项目：
+##### 方法一：
+1. 在全局声明出配置并按需引入我们jsbridge中打包好的 .d.ts 声明文件
+2. tsconfig.json types 配置
 
-## Requirements
+##### 方法二：
+搭建 npm 私有库，将.d.ts 声明文件 自行上传，通过:
+npm i @types/xxx --save 引入项目
 
-## Installation
-
-SDPCordovaLib is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'SDPCordovaLib'
+### 插件分类
+插件分为两类:
+* 基础功能类插件 NBasicPlugin
+```javascript
+/**
+ * 版本号
+ */
+version: string;
+/**
+ * 设置是否打开调试开关。
+ */
+setEnableDebug(enableDebug: boolean): void;
+/**
+ * 跳转当前App的系统授权管理⻚
+ */
+openAppAuthorizeSetting(): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 获取当前App相关信息
+ */
+getAppInfoSync(): ReturnAppInfo;
+/**
+ * 在App应用图标上显示数字⻆标
+ */
+setBadgeCount(param: ParamBadgeCount): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 打开新页面
+ */
+navigateTo(param: ParamNavigateTo): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 返回上一级
+ *
+ */
+navigateBack(): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 用外部浏览器打开⻚面
+ */
+openExternalBrowser(param: ParamExternalBrowse): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 设置WebView容器⻚面的导航栏主题
+ */
+setNavigationBarTheme(param: ParamNavigationBarTheme): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 获取设备相关信息
+ */
+getDeviceInfoSync(): ReturnDeviceInfo;
+/**
+ * 获取系统剪贴板的内容
+ */
+getClipboardDataSync(): ClipboardData;
+/**
+ * 设置系统剪贴板的内容
+ */
+setClipboardData(param: ClipboardData): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 拨打电话
+ */
+makePhoneCall(param: ParamPhoneCall): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 获取设备网络状态
+ */
+getNetworkTypeSync(): ReturnNetworkType;
+/**
+ * 获取推送权限开关状态
+ */
+getNotificationSwitchStatus(): Promise<GenericAsyncResult<ReturnNotiSwitchStatus>>;
+/**
+ * 读取语音播报开关状态
+ */
+getVoiceBroadcastSwitchStatus(): Promise<GenericAsyncResult<ReturnVoiceBroadcastSwitchStatus>>;
+/**
+ * 设置语音播报开关状态
+ */
+setVoiceBroadcastSwitchStatus(
+    param: ParamVoiceBroadcastSwitchStatus
+): Promise<GenericAsyncResult<ReturnVoiceBroadcastSwitchStatus>>;
+/**
+ * 清理webview缓存
+ */
+cleanWebviewCache(): Promise<GenericAsyncResult<undefined>>;
+/**
+ * H5 注册一个句柄,提供给Native调用
+ */
+registerHandler(handlerName: string, handler: GenericCallbackFunc): void;
+/**
+ * 解绑某个handleName下的所有句柄
+ */
+unRegisterHandlers(handlerName: string): void;
+/**
+ * 解绑句柄
+ */
+unRegisterHandler(handlerName: string, handler: GenericCallbackFunc): void;
+/**
+ * 检查 H5 是否已经注册句柄。native内部会调用
+ */
+checkHandlerExist(handlerName: string): boolean;
 ```
 
-## Author
+* 用户照片类插件 NSCustomCameraPlugin
+```javascript
+/**
+ * 压缩图片
+ **/
+compressImage(param: ParamCompressImage): Promise<GenericAsyncResult<ReturnCompressImageResult>>;
+/**
+ * 保存图片到相册
+ **/
+saveImageToPhotosAlbum(param: ParamImageToPhotosAlbum): Promise<GenericAsyncResult<undefined>>;
 
-高鹏程, gaopengcheng@shengpay.com
-
-## Modify
-谷相晔, guxiangye@shengpay.com
-
-## License
-
-SDPCordovaLib is available under the MIT license. See the LICENSE file for more info.
-
-## 关于容器化APP Cordova 封装JS 脚本 ns.ts 自动生成 ns.js 和 ns.d.ts
-在终端 打开 NS 文件夹 , 输入 tsc 就可以自动生成.
-
-## 引用
-```ruby
-pod 'SDPCordovaLib/MPOSLib', :git => 'git@sdpgitlab.shengpayqa.com:mobile_iOS/SDPCordovaLib.git', :tag => '1.0.9.7'
+/**
+ * 选择照片
+ **/
+chooseImage(param: ParamChooseImage): Promise<GenericAsyncResult<ReturnChooseImageResult>>;
 ```
 
-## 添加预编译定义宏 
-### 环境变量
-```ruby
-post_install do |installer_representation|
-    installer_representation.pods_project.targets.each do |target|
-        if target.name == 'SDPCordovaLib'
-          target.build_configurations.each do |config|
-              if config.name == 'AppStoreDebug'
-                  config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [ '$(inherited)', 'DEBUG=1', 'ISTEST=1' ]
-              end
-              if config.name == 'TestDistribute'
-                  config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [ '$(inherited)', 'PRE_PROD=1' ]
-              end
-              if config.name == 'AppStoreRelease'
-                  config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [ '$(inherited)', 'RELEASE=1' ]
-              end
-          end
-        end
-
-    end
-end
+* 用户扫码类插件 NSScanPlugin
+```javascript
+/**
+ * 扫码
+ **/
+scanCode(param: ParamScanCode): Promise<GenericAsyncResult<ReturnScanCode>>;
 ```
 
-## 1.0.7 
-支持调整客服链接
+* 用户定位类插件 NSLocationPlugin
+  需要自行接入并配置第三方appid
+```javascript
+/**
+ * 获取定位
+ **/
+getLocationInfo(): Promise<GenericAsyncResult<ReturnLocationInfo>>;
+```
 
-## 1.0.8
-统一cordova 回调数据格式
+* 用户微信分享类插件 NSSharePlugin
+  需要自行接入并配置第三方appid
+```javascript
+/**
+ * 微信授权,并返回用户信息
+ **/
+sendWXAuthRequest(): Promise<GenericAsyncResult<ReturnWXAuthResult>>;
+/**
+ * 微信分享
+ **/
+shareToWX(param: ParamShareToWX): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 打开微信小程序
+ **/
+launchWXMiniProgram(param: ParamOpenWXMiniProgram): Promise<GenericAsyncResult<ReturnOpenWXMiniProgramResult>>;
+/**
+ * 微信分享小程序
+ **/
+shareToWXMiniProgram(param: ParamShareToWXMiniProgram): Promise<GenericAsyncResult<undefined>>;
+```
 
-## 1.0.9
-应用安全优化: MD5 -> SHA256
-拍照失真问题调试优化
+### 监听方法
+除了插件所支持的方法,我们还提供了一些基础的监听方法
+```javascript
+/**
+ * 监听网络状态变化
+ */
+onNetworkStatusChange(handler: GenericCallbackFunc<CallbackNetworkStatusChange>): void;
+/**
+ * 移除监听网络状态变化
+ */
+offNetworkStatusChange(handler: GenericCallbackFunc<CallbackNetworkStatusChange>): void;
+/**
+ * 监听App切前台事件
+ */
+onAppShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听App切前台事件
+ */
+offAppShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听App切后台台事件
+ */
+onAppHide(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听App切后台事件
+ */
+offAppHide(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听App Push Notification事件
+ */
+onRemoteNotificationReceive(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除App Push Notification事件
+ */
+offRemoteNotificationReceive(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听Page显示事件
+ */
+onPageShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听Page显示事件
+ */
+offPageShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听Page消失事件
+ */
+onPageHide(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听Page消失事件
+ */
+offPageHide(handler: GenericCallbackFunc<void>): void;
+```
+### H5 调用客户端提供的插件方法
+H5 调用客户端提供的插件方法分为两类
 
-## 1.0.9.2
-非强制更新，alert 提示窗放开
+* 异步调用方式
+```javascript
+ns.openAppAuthorizeSetting().then((result)=>{
+          console.log(result);
+         });
+```
+异步调用 采用的是Codova提供的调用方式.
 
-## 1.0.9.3
-选拍照后选相册问题
+* 同步调用方式
+```javascript
+var appinfo = ns.getAppInfoSync()
+```
+由于Codova不支持同步调用,所以通过其他方式解决.
+```javascript NS.js
+    NS.js
+    /**
+     * 自定义同步执行函数
+     **/
+    cordovaExecSync(pluginName, apiName, arr = []) {
+        let isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (isiOS == true) {
+            let command = "NSCordovaExecSync=" + JSON.stringify([pluginName, apiName, arr]);
+            let result = prompt(command);
+            if (typeof (result) == 'string') {
+                return JSON.parse(result);
+            }
+            return result;
+        }
+        else {
+            let result = jsSyncFunction.syncExec(pluginName, apiName, arr);
+            if (typeof (result) == 'string') {
+                return JSON.parse(result);
+            }
+            return result;
+        }
+    }
+```
 
-## 1.0.9.4
-定位文案描述不完整，导致审核失败问题优化
+iOS实现方式:
+拦截window.prompt()方法,用来实现同步方法
+具体实现详见 CDVWKWebViewUIDelegate.m
+```
+- (void)      webView:(WKWebView*)webView runJavaScriptTextInputPanelWithPrompt:(NSString*)prompt
+          defaultText:(NSString*)defaultText initiatedByFrame:(WKFrameInfo*)frame
+    completionHandler:(void (^)(NSString* result))completionHandler
+{
+    NSString * prefix=@"NSCordovaExecSync=";
+    if ([prompt hasPrefix:prefix]) {
+        NSArray *result = [prompt componentsSeparatedByString:prefix];
+        NSArray *jsonEntry = [[result lastObject] cdv_JSONObject];
 
-## 1.0.9.5
-定位逻辑优化
+        BOOL (^validationCommandArguments)(NSArray* arguments) = ^(NSArray *arr){
+        
+            if (arr.count < 2) {
+                return NO;
+            }
+            NSString* _className = arr[0];
+            NSString* _methodName = arr[1];
+            NSArray* _arguments = arr[2];
+            if (![_className isKindOfClass:[NSString class]] || ![_methodName isKindOfClass:[NSString class]] ) {
+                return NO;
+            }
+            if (_arguments != nil && ![_arguments isKindOfClass:[NSArray class]]) {
+                return NO;
+            }
+            
+            return YES;
+        };
+        
 
-## 1.0.9.6
-优化子webview KVC 释放问题
-
-## 1.0.9.7
-支持动态配置 RSA 秘钥
-
-## 1.0.9.8
-SHANGHU-7299 支持动态配置 H5 全路径，适配拓展员
-
-## 1.0.9.9
-动态 RSA 秘钥 /n转义问题优化
-
-## 1.1.0.1
-config.xml 调整，去掉allow-navigation *，适配iOS15 导航头；
-RSA 默认秘钥判空逻辑优化
-
-
-## 1.1.0.2
-SHANGHU-7299 适配拓展员，动态控制引导页图片数据，动态显示分页器
-
-## 1.1.0.3
-SHANGHU-7299 优化 userAgent 动态刷新 checkVersion 字段
-
-## 1.1.0.4
-修复1.1.0.3 闪屏问题优化
-
-## 1.1.1
-SHANGHU-7759 iOS APP 需同意隐私协议
-
-## 1.1.2.1
-SHANGHU-8026 iOS APP 更换图片压缩算法
-
-## 1.1.4
-SHANGHU-9470 iOS 更换高德地图SDK
+        if(validationCommandArguments(jsonEntry) == NO) {
+            NSDictionary *result = @{@"errcode":@"1",@"errorMsg":@"数据格式不正确"};
+            completionHandler([result cdv_JSONString]);
+            return ;
+        }
+        else{
+        ....
+        }
 
 
-## 1.1.9
-容器化 webview 增加清除缓存功能
-## 1.2.0
-容器化 webview 增加定位插件
+}
+```
+Android实现方式:
+在Codova初始化的时候 增加JavascriptInterface
+具体实现详见 NSCordovaView.java
+```java
+
+ private void initCordova() {
+        this.appView = this.makeWebView();
+        this.createViews();
+        if (!this.appView.isInitialized()) {
+            this.appView.init(this.cordovaInterface, this.pluginEntries, this.preferences);
+        }
+
+        if (null != this.appView.getPluginManager().getPlugin("NSBasicPlugin")) {
+            ((NSBasicPlugin)this.appView.getPluginManager().getPlugin("NSBasicPlugin")).setSpCordovaView(this);
+        }
+
+        NSSyncExposedJsApi syncExposedJsApi = new NSSyncExposedJsApi(new NSJsBridge(this.appView.getPluginManager()));
+        this.getWebview().addJavascriptInterface(syncExposedJsApi, "jsSyncFunction");
+        this.cordovaInterface.onCordovaInit(this.appView.getPluginManager());
+    }
+```
+
+### 客户端 调用H5提供的插件方法
+首先H5先注册一个方法
+```
+/**
+* H5 注册一个句柄,提供给Native调用
+**/
+ns.registerHandler("h5Callback", function(data){});
+```
+客户端调用
+
+iOS:
+```
+WKWebView *wkWebView = (WKWebView *)self.webView;
+NSDictionary *dic = @{ @"handlerName": @"h5Callback", @"data": @{ @"actionTxt": actionTxt } };
+[wkWebView evaluateJavaScript:[NSString stringWithFormat:@"ns.handleMessageFromNative('%@')", [dic jsonStringEncoded]] completionHandler:^(id _Nullable obj, NSError *_Nullable error) {
+}];
+    
+```
+
+Android:
+
+```
+JSONObject jsonObject = new JSONObject();
+JSONObject actionObject = new JSONObject();
+
+try {
+        actionObject.put("actionTxt", this.actionTxt);
+        jsonObject.put("handlerName", "h5Callback");
+        jsonObject.put("data", actionObject);
+    } catch (JSONException var5) {
+        var5.printStackTrace();
+    }
+
+this.mCordovaView.getWebview().evaluateJavascript("ns.handleMessageFromNative('" + jsonObject + "')", (ValueCallback)null);
+
+```

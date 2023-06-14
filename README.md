@@ -1,144 +1,231 @@
-# 容器化 APP Native端设计概括
-## 1.背景和目标
-当前，各个业务的移动App产品，都是以“Native + H5”的混合开发模式来实现的。对ToC类产品，为了保证用户体 验，倾向于使用native来实现大部分主体业务功能;而对ToB类产品，可以考虑使用H5实现业务，从而在迭代上获 得更多的灵活性。
-无论是哪一种类型，都会有H5业务接入移动App的诉求。我们以“平台”的视⻆来看待并思考移动App，这种接入就 像“微信小程序接入微信”一样。于是，我们将一个个的H5业务定义为"H5小应用(applet)"，移动App作为平台(也 称为容器)，需要向这些小应用提供运行所需的“WebView宿主环境”，并开放native业务相关的调用API。另外， 容器App需要实现用户登录组件，H5小应用可获取容器内的用户信息完成自身的联合登录。
+# NSWebKit 概括
+## 1.应用场景
+随着大前端技术体系的完善，以及小程序的普及，在越来越多的业务中展现出了它的优势。
+NSWebKit就是针对这一Native/H5的混合开发场景研发的，我们为 web开发者提供了类似主流小程序一样的研发体验。
 
 ## 2.框架设计
-### 关于H5和Native之间通信,我们选用的是Cordova开源移动框架.
-#### Cordova 介绍
-Cordova是一套开源移动开发框架，隶属于Apache开源项目，通过它，开发者可以用标准WEB技术：HTML5、CSS3、JavaScript，来开发跨平台App。 Cordova目前支持的平台有：Android、 Blackberry 10、iOS、OS X、Ubuntu、Windows、WP8.
-#### Cordova 选用理由
-Cordova 是一套非常成熟,并且被广泛使用的开发框架!除了官方提供的插件外,仍然有大量第三方插件,满足不同的业务开发.之所以我们不使用基于Flutter端webview实现的JSBridge,是考虑到,我们部分APP可能只需要H5显示,而不需要其他页面显示,把Flutter集成进去会使APP变得臃肿!
+### 底层技术
+关于H5和Native之间通信,我们选用的是Cordova开源移动框架.
+Cordova是一套开源移动开发框架，开发者可以通过它用标准WEB技术：HTML5、CSS3、JavaScript，来开发跨平台App。 
+Cordova目前支持的平台有：Android、 Blackberry 10、iOS、OS X、Ubuntu、Windows、WP8.
 
 ## 3.使用说明
 ### H5 接入说明
-H5 想使用容器化APP提供的方法,需要在head里引入一个JS文件 http://www.xxxxxx.xxx/ns.js
-这段JS文件 会在document对象上挂载一个对象ns. 后续H5 就可以通过ns.xxx() 去使用容器化APP所支持的方法.
-备注: 这个JS文件如果不引入,会导致Android端无法在H5刚开始载入的时候调用ns方法. (在页面加载完成之后,客户端会自动注入这段js,依旧是可以调用ns的方法的)
+#### js 项目：
+无需引入
 
-### Cordova 插件分类
+#### ts 项目：
+##### 方法一：
+1. 在全局声明出配置并按需引入我们jsbridge中打包好的 .d.ts 声明文件
+2. tsconfig.json types 配置
+
+##### 方法二：
+搭建 npm 私有库，将.d.ts 声明文件 自行上传，通过:
+npm i @types/xxx --save 引入项目
+
+### 插件分类
 插件分为两类:
-* 基础功能类插件 NSLoginPlugin
+* 基础功能类插件 NBasicPlugin
 ```javascript
 /**
- * toast
- **/
-toast(param?: {}): Promise<any>;
+ * 版本号
+ */
+version: string;
+/**
+ * 设置是否打开调试开关。
+ */
+setEnableDebug(enableDebug: boolean): void;
 /**
  * 跳转当前App的系统授权管理⻚
- **/
-openAppAuthorizeSetting(): Promise<any>;
+ */
+openAppAuthorizeSetting(): Promise<GenericAsyncResult<undefined>>;
 /**
  * 获取当前App相关信息
- **/
-getAppInfoSync(): any;
+ */
+getAppInfoSync(): ReturnAppInfo;
 /**
  * 在App应用图标上显示数字⻆标
- **/
-setBadgeCount(param?: {}): Promise<any>;
+ */
+setBadgeCount(param: ParamBadgeCount): Promise<GenericAsyncResult<undefined>>;
 /**
  * 打开新页面
- **/
-navigateTo(param?: {}): Promise<any>;
+ */
+navigateTo(param: ParamNavigateTo): Promise<GenericAsyncResult<undefined>>;
 /**
  * 返回上一级
- **/
-navigateBack(): Promise<any>;
+ *
+ */
+navigateBack(): Promise<GenericAsyncResult<undefined>>;
 /**
  * 用外部浏览器打开⻚面
- **/
-openExternalBrowser(param?: {}): Promise<any>;
+ */
+openExternalBrowser(param: ParamExternalBrowse): Promise<GenericAsyncResult<undefined>>;
 /**
  * 设置WebView容器⻚面的导航栏主题
- **/
-setNavigationBarTheme(param?: {}): Promise<any>;
+ */
+setNavigationBarTheme(param: ParamNavigationBarTheme): Promise<GenericAsyncResult<undefined>>;
 /**
  * 获取设备相关信息
- **/
-getDeviceInfoSync(): any;
+ */
+getDeviceInfoSync(): ReturnDeviceInfo;
 /**
  * 获取系统剪贴板的内容
- **/
-getClipboardDataSync(): any;
+ */
+getClipboardDataSync(): ClipboardData;
 /**
  * 设置系统剪贴板的内容
- **/
-setClipboardData(param?: {}): Promise<any>;
+ */
+setClipboardData(param: ClipboardData): Promise<GenericAsyncResult<undefined>>;
 /**
  * 拨打电话
- **/
-makePhoneCall(param?: {}): Promise<any>;
+ */
+makePhoneCall(param: ParamPhoneCall): Promise<GenericAsyncResult<undefined>>;
 /**
  * 获取设备网络状态
- **/
-getNetworkTypeSync(): {
-    networkType: ConnectionType;
-    errCode: number;
-};
+ */
+getNetworkTypeSync(): ReturnNetworkType;
 /**
- * 扫码
+ * 获取推送权限开关状态
+ */
+getNotificationSwitchStatus(): Promise<GenericAsyncResult<ReturnNotiSwitchStatus>>;
+/**
+ * 读取语音播报开关状态
+ */
+getVoiceBroadcastSwitchStatus(): Promise<GenericAsyncResult<ReturnVoiceBroadcastSwitchStatus>>;
+/**
+ * 设置语音播报开关状态
+ */
+setVoiceBroadcastSwitchStatus(
+    param: ParamVoiceBroadcastSwitchStatus
+): Promise<GenericAsyncResult<ReturnVoiceBroadcastSwitchStatus>>;
+/**
+ * 清理webview缓存
+ */
+cleanWebviewCache(): Promise<GenericAsyncResult<undefined>>;
+/**
+ * H5 注册一个句柄,提供给Native调用
+ */
+registerHandler(handlerName: string, handler: GenericCallbackFunc): void;
+/**
+ * 解绑某个handleName下的所有句柄
+ */
+unRegisterHandlers(handlerName: string): void;
+/**
+ * 解绑句柄
+ */
+unRegisterHandler(handlerName: string, handler: GenericCallbackFunc): void;
+/**
+ * 检查 H5 是否已经注册句柄。native内部会调用
+ */
+checkHandlerExist(handlerName: string): boolean;
+```
+
+* 用户照片类插件 NSCustomCameraPlugin
+```javascript
+/**
+ * 压缩图片
  **/
-scanCode(param?: {}): Promise<any>;
+compressImage(param: ParamCompressImage): Promise<GenericAsyncResult<ReturnCompressImageResult>>;
 /**
  * 保存图片到相册
  **/
-saveImageToPhotosAlbum(param?: {}): Promise<any>;
-    
+saveImageToPhotosAlbum(param: ParamImageToPhotosAlbum): Promise<GenericAsyncResult<undefined>>;
+
+/**
+ * 选择照片
+ **/
+chooseImage(param: ParamChooseImage): Promise<GenericAsyncResult<ReturnChooseImageResult>>;
 ```
 
-* 用户登录功能类插件 NSBasicPlugin
+* 用户扫码类插件 NSScanPlugin
 ```javascript
 /**
- * 登录
+ * 扫码
  **/
-login(): Promise<any>;
-/**
- * 退出登录
- **/
-logOut(): Promise<any>;
-/**
- * 获取当前登录用户的信息
- **/
-getUserInfoSync(): Promise<any>;
+scanCode(param: ParamScanCode): Promise<GenericAsyncResult<ReturnScanCode>>;
 ```
 
+* 用户定位类插件 NSLocationPlugin
+需要自行接入并配置第三方appid
+```javascript
+/**
+ * 获取定位
+ **/
+getLocationInfo(): Promise<GenericAsyncResult<ReturnLocationInfo>>;
+```
 
+* 用户微信分享类插件 NSSharePlugin
+  需要自行接入并配置第三方appid
+```javascript
+/**
+ * 微信授权,并返回用户信息
+ **/
+sendWXAuthRequest(): Promise<GenericAsyncResult<ReturnWXAuthResult>>;
+/**
+ * 微信分享
+ **/
+shareToWX(param: ParamShareToWX): Promise<GenericAsyncResult<undefined>>;
+/**
+ * 打开微信小程序
+ **/
+launchWXMiniProgram(param: ParamOpenWXMiniProgram): Promise<GenericAsyncResult<ReturnOpenWXMiniProgramResult>>;
+/**
+ * 微信分享小程序
+ **/
+shareToWXMiniProgram(param: ParamShareToWXMiniProgram): Promise<GenericAsyncResult<undefined>>;
+```
 
 ### 监听方法
 除了插件所支持的方法,我们还提供了一些基础的监听方法
 ```javascript
- /**
+/**
  * 监听网络状态变化
- **/
-onNetworkStatusChange(handler: Function): void;
+ */
+onNetworkStatusChange(handler: GenericCallbackFunc<CallbackNetworkStatusChange>): void;
 /**
  * 移除监听网络状态变化
- **/
-offNetworkStatusChange(handler: Function): void;
-/**
- * 监听用户登录成功事件
- **/
-onUserLogin(handler: Function): void;
-/**
- * 移除监听用户登录成功事件
- **/
-offUserLogin(handler: Function): void;
- /**
- * 监听用户登出的事件
- **/
-onUserLogout(handler: Function): void;
-/**
- * 移除监听用户登出的事件
- **/
-offUserLogout(handler: Function): void;
+ */
+offNetworkStatusChange(handler: GenericCallbackFunc<CallbackNetworkStatusChange>): void;
 /**
  * 监听App切前台事件
- **/
-onAppShow(handler: Function): void;
+ */
+onAppShow(handler: GenericCallbackFunc<void>): void;
 /**
  * 移除监听App切前台事件
- **/
-offAppShow(handler: Function): void;
+ */
+offAppShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听App切后台台事件
+ */
+onAppHide(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听App切后台事件
+ */
+offAppHide(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听App Push Notification事件
+ */
+onRemoteNotificationReceive(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除App Push Notification事件
+ */
+offRemoteNotificationReceive(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听Page显示事件
+ */
+onPageShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听Page显示事件
+ */
+offPageShow(handler: GenericCallbackFunc<void>): void;
+/**
+ * 监听Page消失事件
+ */
+onPageHide(handler: GenericCallbackFunc<void>): void;
+/**
+ * 移除监听Page消失事件
+ */
+offPageHide(handler: GenericCallbackFunc<void>): void;
 ```
 ### H5 调用客户端提供的插件方法
 H5 调用客户端提供的插件方法分为两类

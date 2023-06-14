@@ -156,15 +156,9 @@ public class NSWebViewFragment extends Fragment implements NSPluginInterface, On
         if (!TextUtils.isEmpty(intent.getStringExtra("theme"))) {
             theme = intent.getStringExtra("theme");
         }
-//    if (!TextUtils.isEmpty(theme)) {
-//      theme(theme);
-//    }
         if (TextUtils.isEmpty(url)) {
             if (BuildConfig.DEBUG) {
-//                url = "https://ebinfo.shengpay.com/dev/page/sample-vue3.html";
-                url = "https://zqbtest.shengpay.com/cp-h5-sybp/";
-//        url =
-//            "http://anntest.shengpay.com/v-pages/syw/v1/agent_index?outToken=MTGT-03f5a9e3429f4ecea11ea7b2ae3b76b3CligKUo91n43o2MfJ3AXaw&source=ZF1812&deviceId=deviceId-89e48c3f71ac13a4880976&role=1&operatorId=7000015095111";
+                url = "www/index.html";
             } else {
                 url = "about:blank";
             }

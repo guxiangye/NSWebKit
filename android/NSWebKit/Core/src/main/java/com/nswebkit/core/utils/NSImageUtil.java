@@ -139,15 +139,15 @@ public class NSImageUtil {
 
 
     private static String fileToBitmap(File compressFile, long maxLength) {
-        Log.d("zhangbuniao", "期望大小：" + maxLength / 1024 + "k");
+        Log.d("fileToBitmap", "期望大小：" + maxLength / 1024 + "k");
         Bitmap bitmap = BitmapFactory.decodeFile(compressFile.getAbsolutePath());
         String base64 = bitmapToBase64(bitmap);
-        Log.d("zhangbuniao", "压缩前大小：" + base64.length() / 1024 + "k");
+        Log.d("fileToBitmap", "压缩前大小：" + base64.length() / 1024 + "k");
         while (base64.length() > maxLength) {
-            Log.d("zhangbuniao", "压缩前大小01：" + base64.length() / 1024 + "k");
+            Log.d("fileToBitmap", "压缩前大小01：" + base64.length() / 1024 + "k");
             base64 = compressScale(bitmap);
             bitmap = convertBase64ToPic(base64);
-            Log.d("zhangbuniao", "压缩后大小：" + base64.length() / 1024 + "k");
+            Log.d("fileToBitmap", "压缩后大小：" + base64.length() / 1024 + "k");
         }
         return base64;
     }
