@@ -26,21 +26,5 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能访问相机</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能访问您的位置信息</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能始终访问您的位置信息</string>
-	<key>NSLocationUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能访问您的位置信息</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能在使用期间访问您的位置</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>App需要您的同意,才能访问麦克风</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能访问相册</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&apos;NSWebKit&apos;需要您的同意,才能访问相册</string>
 </dict>
 </plist>

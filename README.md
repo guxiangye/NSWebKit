@@ -15,6 +15,8 @@ Cordova目前支持的平台有：Android、 Blackberry 10、iOS、OS X、Ubuntu
 无需引入
 
 #### ts 项目：
+*注意：不同的发开工具和版本，及 ts版本，声明配置可能有细微区别，具体方式以项目实际情况为准。
+下面为举例方法：
 ##### 方法一：
 1. 在全局声明出配置并按需引入我们jsbridge中打包好的 .d.ts 声明文件
 2. tsconfig.json types 配置
@@ -233,25 +235,22 @@ H5 调用客户端提供的插件方法分为两类
 * 异步调用方式
 ```javascript
 ns.openAppAuthorizeSetting().then((result)=>{
-          console.log(result);
-         });
+    console.log(result);
+});
 ```
-异步调用 采用的是Codova提供的调用方式.
+异步调用 采用的是Cordova提供的调用方式.
 
 * 同步调用方式 
 ```javascript
 var appinfo = ns.getAppInfoSync()
 ```
-由于Codova不支持同步调用,所以通过其他方式解决.
-```javascript NS.js
-    NS.js
-    /**
-     * 自定义同步执行函数
-     **/
-    cordovaExecSync(pluginName, apiName, arr = []) {
+由于Cordova不支持同步调用,所以通过其他方式解决.
+```javascript
+    //NS.js
+    function cordovaExecSync(pluginName, apiName, arr = []) {
         let isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         if (isiOS == true) {
-            let command = "NSCordovaExecSync=" + JSON.stringify([pluginName, apiName, arr]);
+            let command = "NSExecSync=" + JSON.stringify([pluginName, apiName, arr]);
             let result = prompt(command);
             if (typeof (result) == 'string') {
                 return JSON.parse(result);
@@ -259,7 +258,7 @@ var appinfo = ns.getAppInfoSync()
             return result;
         }
         else {
-            let result = jsSyncFunction.syncExec(pluginName, apiName, arr);
+            let result = NSExecSync.syncExec(pluginName, apiName, arr);
             if (typeof (result) == 'string') {
                 return JSON.parse(result);
             }
@@ -271,18 +270,16 @@ var appinfo = ns.getAppInfoSync()
 iOS实现方式:
 拦截window.prompt()方法,用来实现同步方法
 具体实现详见 CDVWKWebViewUIDelegate.m
-```
-- (void)      webView:(WKWebView*)webView runJavaScriptTextInputPanelWithPrompt:(NSString*)prompt
+```oc
+- (void)webView:(WKWebView*)webView runJavaScriptTextInputPanelWithPrompt:(NSString*)prompt
           defaultText:(NSString*)defaultText initiatedByFrame:(WKFrameInfo*)frame
-    completionHandler:(void (^)(NSString* result))completionHandler
-{
-    NSString * prefix=@"NSCordovaExecSync=";
+    completionHandler:(void (^)(NSString* result))completionHandler {
+    NSString * prefix=@"NSExecSync=";
     if ([prompt hasPrefix:prefix]) {
         NSArray *result = [prompt componentsSeparatedByString:prefix];
         NSArray *jsonEntry = [[result lastObject] cdv_JSONObject];
 
         BOOL (^validationCommandArguments)(NSArray* arguments) = ^(NSArray *arr){
-        
             if (arr.count < 2) {
                 return NO;
             }
@@ -298,7 +295,6 @@ iOS实现方式:
             
             return YES;
         };
-        
 
         if(validationCommandArguments(jsonEntry) == NO) {
             NSDictionary *result = @{@"errcode":@"1",@"errorMsg":@"数据格式不正确"};
@@ -308,35 +304,32 @@ iOS实现方式:
         else{
         ....
         }
-
-
 }
 ```
 Android实现方式:
-在Codova初始化的时候 增加JavascriptInterface
+在Cordova初始化的时候 增加JavascriptInterface
 具体实现详见 NSCordovaView.java
 ```java
-
- private void initCordova() {
-        this.appView = this.makeWebView();
-        this.createViews();
-        if (!this.appView.isInitialized()) {
-            this.appView.init(this.cordovaInterface, this.pluginEntries, this.preferences);
-        }
-
-        if (null != this.appView.getPluginManager().getPlugin("NSBasicPlugin")) {
-            ((NSBasicPlugin)this.appView.getPluginManager().getPlugin("NSBasicPlugin")).setSpCordovaView(this);
-        }
-
-        NSSyncExposedJsApi syncExposedJsApi = new NSSyncExposedJsApi(new NSJsBridge(this.appView.getPluginManager()));
-        this.getWebview().addJavascriptInterface(syncExposedJsApi, "jsSyncFunction");
-        this.cordovaInterface.onCordovaInit(this.appView.getPluginManager());
+private void initCordova() {
+    this.appView = this.makeWebView();
+    this.createViews();
+    if (!this.appView.isInitialized()) {
+        this.appView.init(this.cordovaInterface, this.pluginEntries, this.preferences);
     }
+
+    if (null != this.appView.getPluginManager().getPlugin("NSBasicPlugin")) {
+        ((NSBasicPlugin)this.appView.getPluginManager().getPlugin("NSBasicPlugin")).setSpCordovaView(this);
+    }
+
+    NSSyncExposedJsApi syncExposedJsApi = new NSSyncExposedJsApi(new NSJsBridge(this.appView.getPluginManager()));
+    this.getWebview().addJavascriptInterface(syncExposedJsApi, "NSExecSync");
+    this.cordovaInterface.onCordovaInit(this.appView.getPluginManager());
+}
 ```
 
 ### 客户端 调用H5提供的插件方法
 首先H5先注册一个方法
-```
+```javascript
 /**
 * H5 注册一个句柄,提供给Native调用
 **/
@@ -354,8 +347,7 @@ NSDictionary *dic = @{ @"handlerName": @"h5Callback", @"data": @{ @"actionTxt": 
 ```
 
 Android:
-
-```
+```java
 JSONObject jsonObject = new JSONObject();
 JSONObject actionObject = new JSONObject();
 
