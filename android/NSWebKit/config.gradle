@@ -10,6 +10,7 @@ ext {
     plugin_customCamera_version = "1.0.0"
     plugin_scan_version = "1.0.0"
     plugin_location_version = "1.0.0"
+    plugin_choose_location_version = "1.0.0"
     plugin_share_version = "1.0.0"
 
     android = [

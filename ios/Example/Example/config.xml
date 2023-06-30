@@ -60,6 +60,9 @@
     <feature name="NSLocationPlugin">
         <param name="ios-package" value="NSLocationPlugin"/>
     </feature>
+    <feature name="NSChooseLocationPlugin">
+        <param name="ios-package" value="NSChooseLocationPlugin"/>
+    </feature>
     <feature name="NSScanPlugin">
         <param name="ios-package" value="NSScanPlugin"/>
     </feature>

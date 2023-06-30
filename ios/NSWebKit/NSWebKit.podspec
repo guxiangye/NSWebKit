@@ -107,6 +107,18 @@ Pod::Spec.new do |s|
              ss.dependency 'AMapLocation-NO-IDFA', '~> 2.9.0'
         end
         
+        sp.subspec 'ChooseLocation' do |ss|
+          ss.source_files = 'Plugins/ChooseLocation/*.{h,m}'
+             ss.dependency 'NSWebKit/Plugins/Basic'
+             ss.dependency 'LBXPermission/Location'
+             ss.dependency 'MJRefresh', '~> 3.7.5'
+             ss.dependency 'AMap3DMap-NO-IDFA', '~> 9.7.0'
+             ss.dependency 'AMapSearch-NO-IDFA', '~> 9.7.0'
+             ss.subspec 'Assets' do |sss|
+                 sss.resources = ['Plugins/ChooseLocation/Assets/*']
+             end
+        end
+        
         sp.subspec 'Share' do |ss|
             ss.source_files = 'Plugins/Share/*.{h,m}'
             ss.dependency 'NSWebKit/Plugins/Basic'

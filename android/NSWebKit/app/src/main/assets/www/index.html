@@ -5,7 +5,7 @@
     <title>NSWebKit Api Example</title>
     <style type="text/css">
         * {
-            font-size: 40px;
+            font-size: 30px;
         }
     </style>
     <script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
@@ -14,7 +14,7 @@
     </script>
     <style>
         .app {
-            padding: 100px 20px;
+            padding: 20px 30px;
         }
 
         .app > .item {
@@ -23,31 +23,70 @@
 
         .app > .item button {
             width: 100%;
-            padding: 20px 0;
-            font-size: 40px;
+            font-size: 30px;
+            border: none;
             background: #A7A7A7;
+            border-radius: 20px;
+        }
+
+        .title {
+            text-align: left;
+            margin: 20px auto;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .title:before {
+            position: absolute;
+            content: '';
+            width: 10px;
+            height: 40px;
+            background: #A7A7A7;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .item {
+            background: #A7A7A7;
+            border-radius: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .item > label {
+            border-radius: 20px;
+            font-size: 30px;
+            color: #333;
+            display: inline-block;
+            background: aliceblue;
+            padding: 20px 40px;
+            /*text-decoration: underline;*/
+            /*text-underline: blue;*/
+            width: 200px;
+            text-align: center;
+        }
+
+        label + label {
+            margin-top: 40px;
+        }
+
+        .item > input {
+            display: none;
+        }
+
+        .item + .title {
+            margin-top: 50px;
         }
 
         .item + .item {
             margin-top: 20px;
         }
-
-        label {
-            display: block;
-            height: 100px;
-            font-size: 40px;
-            color: blue;
-            text-decoration: underline;
-            text-underline: blue;
-        }
-        input {
-            width: 300px;
-            height: 150px;
-        }
     </style>
 </head>
 <body>
 <div class="app">
+    <div class="title">Basic Plugin</div>
     <div class="item">
         <button type='button' onclick="openAppAuthorizeSetting()">跳转当前App的系统授权管理⻚</button>
     </div>
@@ -136,11 +175,15 @@
             获取设备网络状态
         </button>
     </div>
+
+    <div class="title">Scan Plugin</div>
     <div class="item">
         <button type='button' onclick='scanCode({scanType: ["qrCode"]})'>
             扫码
         </button>
     </div>
+
+    <div class="title">CustomCamera Plugin</div>
     <div class="item">
         <button type='button' onclick='takePhoto()'>
             拍照
@@ -151,14 +194,28 @@
             相册
         </button>
     </div>
+
+    <div class="title">Camera Plugin (Android)</div>
     <div class="item">
-        <label for="input1">拉起相册：</label>
         <input id="input1" type="file" accept="image/*" style="display: none">
-        <label for="input2">拉起相机：</label>
         <input id="input2" type="file" accept="image/*" capture="camera" style="display: none">
-        <label for="input3">拉起摄像头：</label>
         <input id="input3" type="file" accept="video/*" capture="camcorder" style="display: none">
+        <label for="input1">拉起相册：</label>
+        <label for="input2">拉起相机：</label>
+        <label for="input3">拉起摄像头：</label>
         <img src="" id="v_photoA" style="width: 100%;height: 50%">
+    </div>
+
+    <div class="title">Location Plugin</div>
+    <div class="item">
+        <button type='button' onclick='getLocation()'>
+            定位
+        </button>
+    </div>
+    <div class="item">
+        <button type='button' onclick='chooseLocation()'>
+            地图点选
+        </button>
     </div>
 </div>
 <script>
@@ -196,9 +253,9 @@
         });
     }
     function setNavigationBarTheme(param){
-         window.ns.setNavigationBarTheme(param).then((result)=>{
-          console.log(result);
-         });
+        window.ns.setNavigationBarTheme(param).then((result)=>{
+            console.log(result);
+        });
     }
     function navigateBack(){
         window.ns.navigateBack().then((result)=>{
@@ -254,6 +311,18 @@
         const params = {sourceType: 'album', count: 9}
         window.ns.chooseImage(params).then((result)=>{
             console.log(result);
+        });
+    }
+    function getLocation() {
+        window.ns.getLocationInfo().then((result)=>{
+            console.log(result);
+            alert(JSON.stringify(result))
+        });
+    }
+    function chooseLocation() {
+        window.ns.chooseLocation().then((result)=>{
+            console.log(result);
+            alert(JSON.stringify(result))
         });
     }
 </script>

@@ -19,15 +19,6 @@
 
 @implementation NSLocationPlugin
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    }
-    return self;
-}
-
 #pragma mark - 获取定位
 - (void)getLocationInfo:(CDVInvokedUrlCommand *)command {
     [LBXPermissionLocation authorizeWithCompletion:^(BOOL granted, BOOL firstTime) {

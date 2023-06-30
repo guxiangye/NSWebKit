@@ -10,6 +10,7 @@ abstract_target 'Common' do
     pod 'NSWebKit/Plugins/CustomCamera', :path => '../NSWebKit'
     pod 'NSWebKit/Plugins/Scan', :path => '../NSWebKit'
     pod 'NSWebKit/Plugins/Location', :path => '../NSWebKit'
+    pod 'NSWebKit/Plugins/ChooseLocation', :path => '../NSWebKit'
     pod 'NSWebKit/Plugins/Share', :path => '../NSWebKit'
     
     target 'Example' do

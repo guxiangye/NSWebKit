@@ -27,12 +27,6 @@ android {
         }
     }
 
-//    repositories {
-//        flatDir {
-//            dirs 'libs'   // aar目录
-//        }
-//    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -100,7 +94,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    api files('libs/AMap_Location_V6.2.0_20221026.jar')
+    implementation  'com.amap.api:location:6.3.0'
     compileOnly project(path: ':Cordova')
     compileOnly project(path: ':Core')
 }

@@ -83,6 +83,12 @@
       value="com.nswebkit.plugins.location.NSLocationPlugin" />
   </feature>
 
+  <feature name="NSChooseLocationPlugin">
+    <param
+      name="android-package"
+      value="com.nswebkit.plugins.chooselocation.NSChooseLocationPlugin" />
+  </feature>
+
   <feature name="NSSharePlugin">
     <param
         name="android-package"

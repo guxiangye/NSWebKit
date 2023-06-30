@@ -1,7 +1,11 @@
 PODS:
+  - AMap3DMap-NO-IDFA (9.7.0):
+    - AMapFoundation-NO-IDFA (>= 1.8.0)
   - AMapFoundation-NO-IDFA (1.8.2)
   - AMapLocation-NO-IDFA (2.9.0):
     - AMapFoundation-NO-IDFA (>= 1.7.0)
+  - AMapSearch-NO-IDFA (9.7.0):
+    - AMapFoundation-NO-IDFA (>= 1.8.0)
   - LBXPermission/Base (1.1.1)
   - LBXPermission/Camera (1.1.1)
   - LBXPermission/Location (1.1.1)
@@ -12,6 +16,7 @@ PODS:
   - LBXScan/UI (2.5.1):
     - LBXScan/Types (~> 2.2)
   - Masonry (1.1.0)
+  - MJRefresh (3.7.5)
   - NSWebKit (1.0.0):
     - NSWebKit/Core (= 1.0.0)
   - NSWebKit/Cordova (1.0.0)
@@ -35,6 +40,21 @@ PODS:
   - NSWebKit/Plugins/Basic (1.0.0):
     - LBXPermission/Base
     - NSWebKit/Core
+  - NSWebKit/Plugins/ChooseLocation (1.0.0):
+    - AMap3DMap-NO-IDFA (~> 9.7.0)
+    - AMapSearch-NO-IDFA (~> 9.7.0)
+    - LBXPermission/Location
+    - MJRefresh (~> 3.7.5)
+    - NSWebKit/Core
+    - NSWebKit/Plugins/Basic
+    - NSWebKit/Plugins/ChooseLocation/Assets (= 1.0.0)
+  - NSWebKit/Plugins/ChooseLocation/Assets (1.0.0):
+    - AMap3DMap-NO-IDFA (~> 9.7.0)
+    - AMapSearch-NO-IDFA (~> 9.7.0)
+    - LBXPermission/Location
+    - MJRefresh (~> 3.7.5)
+    - NSWebKit/Core
+    - NSWebKit/Plugins/Basic
   - NSWebKit/Plugins/CustomCamera (1.0.0):
     - LBXPermission/Base
     - LBXPermission/Camera
@@ -81,6 +101,7 @@ PODS:
 DEPENDENCIES:
   - NSWebKit (from `../NSWebKit`)
   - NSWebKit/Plugins/Basic (from `../NSWebKit`)
+  - NSWebKit/Plugins/ChooseLocation (from `../NSWebKit`)
   - NSWebKit/Plugins/CustomCamera (from `../NSWebKit`)
   - NSWebKit/Plugins/Location (from `../NSWebKit`)
   - NSWebKit/Plugins/Scan (from `../NSWebKit`)
@@ -88,11 +109,14 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AMap3DMap-NO-IDFA
     - AMapFoundation-NO-IDFA
     - AMapLocation-NO-IDFA
+    - AMapSearch-NO-IDFA
     - LBXPermission
     - LBXScan
     - Masonry
+    - MJRefresh
     - Toast
     - TZImagePickerController
     - WechatOpenSDK
@@ -104,18 +128,21 @@ EXTERNAL SOURCES:
     :path: "../NSWebKit"
 
 SPEC CHECKSUMS:
+  AMap3DMap-NO-IDFA: a3516859f2e82eda9fe9309c57d862f1543c2de4
   AMapFoundation-NO-IDFA: 6ce0ef596d4eb8d934ff498e56747b6de1247b05
   AMapLocation-NO-IDFA: 6839d1543b3138ae594ddd36ab72741dc87df66f
+  AMapSearch-NO-IDFA: 749f73d5a773758f01a24eb8872f8798c8b47cb4
   LBXPermission: e7f860ce1280599fc196a8c5dee713cbb81354d4
   LBXScan: 90ca10d0c38fb4a5a6980d7782354f3f69f50093
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  NSWebKit: 75c36c280055c51e761d6616638ffdd6cb904674
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  NSWebKit: 521652209ad8b8ee52adb462d85074a48c341275
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZYImageCompress: 0d2bb50ae05a4f61533e64968fe4ccced1695327
 
-PODFILE CHECKSUM: ef6e1373195a2f15f41b2cc2637a4d81956529dd
+PODFILE CHECKSUM: 5e1a57e54817f18f5d46ab63157e21cca94dba5d
 
 COCOAPODS: 1.12.1

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="NSDrawerLayout">
+    <attr format="dimension" name="minOffset" />
+    <attr format="dimension" name="maxOffset" />
+    <attr format="dimension" name="exitOffset" />
+    <attr name="mode">
+      <flag name="open" value="0x0" />
+      <flag name="close" value="0x1" />
+      <flag name="exit" value="0x2" />
+    </attr>
+  </declare-styleable>
+</resources>

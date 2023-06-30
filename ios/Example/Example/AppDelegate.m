@@ -48,7 +48,7 @@
             return nil;
         }];
         
-        [AMapServices sharedServices].apiKey = @"amapApiKey";
+        [AMapServices sharedServices].apiKey = @"d54ac047a964fa9c4d00febe9c8c89af";
         [AMapLocationManager updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
         [AMapLocationManager updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
         
