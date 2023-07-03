@@ -1,5 +1,3 @@
-import {GenericAsyncResult} from "./ns";
-
 export declare type ParamImageToPhotosAlbum = {
     base64Image: string;
 };
@@ -36,7 +34,6 @@ declare module "./ns" {
          * 保存图片到相册
          **/
         saveImageToPhotosAlbum(param: ParamImageToPhotosAlbum): Promise<GenericAsyncResult<undefined>>;
-
         /**
          * 选择照片
          **/

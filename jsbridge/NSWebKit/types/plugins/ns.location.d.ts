@@ -1,5 +1,3 @@
-import {GenericAsyncResult} from "./ns";
-
 export declare type ReturnLocationInfo = {
     formattedAddress?: string;
     country?: string;
@@ -10,7 +8,6 @@ export declare type ReturnLocationInfo = {
     latitude: number;
     longitude: number;
 };
-
 export declare type ParamChooseLocation = {
     /**
      * 查询POI类型 详见:https://lbs.amap.com/api/webservice/guide/api/search
@@ -18,7 +15,6 @@ export declare type ParamChooseLocation = {
      **/
     types?: string;
 };
-
 export declare type ReturnChooseLocationInfo = {
     address?: string;
     name?: string;
@@ -29,7 +25,6 @@ export declare type ReturnChooseLocationInfo = {
     latitude: number;
     longitude: number;
 };
-
 declare module "./ns" {
     interface NSWebKit {
         /**

@@ -4,8 +4,8 @@ console.log("com.nswebkit.build.ts", "start.")
 module.exports = {
     mode: 'none',
     entry: {
-        [`ns`]: './src/index.ts',
-        [`ns.min`]: './src/index.ts'
+        [`ns`]: './src/impl/ns.impl.ts',
+        [`ns.min`]: './src/impl/ns.impl.ts'
     },
     output: {
         path: __dirname + '/dist',

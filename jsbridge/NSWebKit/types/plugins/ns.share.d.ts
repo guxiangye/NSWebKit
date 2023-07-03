@@ -1,5 +1,3 @@
-import {GenericAsyncResult} from "./ns";
-
 export declare type WXShareType = "WXSceneSession" | "WXSceneTimeline" | "WXSceneFavorite";
 export declare type ParamShareToWX = {
     webpageUrl: string;

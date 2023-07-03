@@ -1,5 +1,3 @@
-import {GenericAsyncResult} from "./ns";
-
 export declare type NetworkStatus = "wifi" | "2g" | "3g" | "4g" | "5g" | "ethernet" | "none" | "unknown";
 export declare type ClipboardData = {
     data: string;
@@ -11,14 +9,14 @@ export declare type ParamNavigateTo = {
     url: string;
     hidden?: boolean;
     title?: string;
-    titleColor?: string; //16进制标题文字颜色，如: #eeeeee
+    titleColor?: string;
     color?: string;
-    isBright?: boolean; //
+    isBright?: boolean;
     showBackButton?: boolean;
     showCloseButton?: boolean;
-    actionTxt?: string;//右上角文字按钮
-    actionIcon?: string;//右上角 icon base64
-    translucentStatusBars?: boolean;//状态栏是否沉浸
+    actionTxt?: string;
+    actionIcon?: string;
+    translucentStatusBars?: boolean;
 };
 export declare type ParamExternalBrowse = {
     url: string;
@@ -26,14 +24,14 @@ export declare type ParamExternalBrowse = {
 export declare type ParamNavigationBarTheme = {
     hidden?: boolean;
     title?: string;
-    titleColor?: string; //16进制标题文字颜色，如 eeeeee
+    titleColor?: string;
     color?: string;
-    isBright?: boolean; //
+    isBright?: boolean;
     showBackButton?: boolean;
     showCloseButton?: boolean;
-    actionTxt?: string;//右上角文字按钮
-    actionIcon?: string;//右上角 icon base64
-    translucentStatusBars?: boolean;//状态栏是否沉浸
+    actionTxt?: string;
+    actionIcon?: string;
+    translucentStatusBars?: boolean;
 };
 export declare type ParamPhoneCall = {
     phoneNumber: string;
@@ -42,7 +40,7 @@ export declare type ReturnAppInfo = {
     appId: string;
     appVersionName: string;
     appVersionCode: number;
-    extendInfo?: any;//扩展信息字段
+    extendInfo?: any;
 };
 export declare type ReturnDeviceInfo = {
     osType: number;
@@ -139,9 +137,7 @@ declare module "./ns" {
         /**
          * 设置语音播报开关状态
          */
-        setVoiceBroadcastSwitchStatus(
-            param: ParamVoiceBroadcastSwitchStatus
-        ): Promise<GenericAsyncResult<ReturnVoiceBroadcastSwitchStatus>>;
+        setVoiceBroadcastSwitchStatus(param: ParamVoiceBroadcastSwitchStatus): Promise<GenericAsyncResult<ReturnVoiceBroadcastSwitchStatus>>;
         /**
          * 清理webview缓存
          */

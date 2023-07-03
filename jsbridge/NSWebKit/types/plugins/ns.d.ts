@@ -3,5 +3,5 @@ export declare type GenericAsyncResult<T = any> = {
     errorMsg?: string;
     result?: T;
 };
-
-export declare interface NSWebKit {}
+export declare interface NSWebKit {
+}

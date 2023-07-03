@@ -1,19 +1,27 @@
 {
   "name": "nswebkit",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "a jsbridge for nswebkit",
-  "main": "index.js",
+  "main": "dist/ns.min.js",
   "types": "./types/index.d.ts",
   "files": [
-    "./types/*"
+    "dist", "types"
   ],
   "scripts": {
     "build": "webpack",
-    "types": "ts-node-esm ./script/build.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guxiangye/NSWebKit.git",
+    "directory": "jsbridge/NSWebKit/"
   },
   "author": "neil",
   "license": "ISC",
+  "keywords": ["nswebkit"],
   "devDependencies": {
     "@rushstack/node-core-library": "^3.55.2",
     "@types/cordova": "^0.0.34",
