@@ -22,8 +22,11 @@ Cordova目前支持的平台有：Android、 Blackberry 10、iOS、OS X、Ubuntu
 2. tsconfig.json types 配置
 
 ##### 方法二：
+npm i nswebkit --dev 引入项目
+
+##### 方法三：
 搭建 npm 私有库，将.d.ts 声明文件 自行上传，通过:
-npm i @types/xxx --save 引入项目
+npm i @types/nswebkit --dev 引入项目
 
 ### 插件分类
 插件分为两类:
