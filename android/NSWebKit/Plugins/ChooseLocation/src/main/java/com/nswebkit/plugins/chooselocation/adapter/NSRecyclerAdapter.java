@@ -68,7 +68,7 @@ public class NSRecyclerAdapter extends RecyclerView.Adapter<NSRecyclerAdapter.Vi
         resultType = type;
         notifyDataSetChanged();
         listener.showResultTypeChanged(type);
-        if (type == NSRecyclerAdapterResultType.normalType) {
+        if (type == NSRecyclerAdapterResultType.normalType && normalSelectedPOI!=null) {
             listener.onItemClicked(normalCurrentPosstion, normalSelectedPOI);
         }
 
@@ -145,19 +145,24 @@ public class NSRecyclerAdapter extends RecyclerView.Adapter<NSRecyclerAdapter.Vi
             }
         }
 
-        float distance = AMapUtils.calculateLineDistance(new LatLng(poiItem.getLatLonPoint().getLatitude(), poiItem.getLatLonPoint().getLongitude()), gpsLocation);
+        if (gpsLocation == null){
+            holder.detailTextView.setText( poiItem.getSnippet());
+        }
+        else{
+            float distance = AMapUtils.calculateLineDistance(new LatLng(poiItem.getLatLonPoint().getLatitude(), poiItem.getLatLonPoint().getLongitude()), gpsLocation);
 
-        String distanceStr = null;
-        if (distance < 100) {
-            distanceStr = "100米内";
-        } else if (distance < 1000) {
-            distanceStr = (int) distance + "米";
-        } else {
-            distanceStr = String.format("%.2f", distance / 1000) + "千米";
+            String distanceStr = null;
+            if (distance < 100) {
+                distanceStr = "100米内";
+            } else if (distance < 1000) {
+                distanceStr = (int) distance + "米";
+            } else {
+                distanceStr = String.format("%.2f", distance / 1000) + "千米";
+            }
+            holder.detailTextView.setText(distanceStr + " | " + poiItem.getSnippet());
         }
 
         holder.textView.setText(poiItem.getTitle());
-        holder.detailTextView.setText(distanceStr + " | " + poiItem.getSnippet());
 
     }
 

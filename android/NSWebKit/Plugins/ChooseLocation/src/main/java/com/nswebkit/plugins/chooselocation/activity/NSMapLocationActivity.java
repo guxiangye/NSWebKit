@@ -1,18 +1,29 @@
 package com.nswebkit.plugins.chooselocation.activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +33,7 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,6 +61,8 @@ import com.amap.api.services.core.PoiItemV2;
 import com.amap.api.services.poisearch.PoiResultV2;
 import com.amap.api.services.poisearch.PoiSearchV2;
 import com.amap.api.services.poisearch.PoiSearchV2.Query;
+import com.nswebkit.core.utils.NSAppUtil;
+import com.nswebkit.plugins.chooselocation.utils.NSMapLocationParam;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.nswebkit.plugins.chooselocation.R;
@@ -65,9 +79,9 @@ import org.json.JSONObject;
 /**
  * @date 2023/6/1 on 13:37 @author: neil
  */
-public class NSMapLocationActivity extends Activity implements OnClickListener, LocationSource, AMapLocationListener, AMap.OnCameraChangeListener, PoiSearchV2.OnPoiSearchListener,AMap.OnMapClickListener ,AMap.OnPOIClickListener{
+public class NSMapLocationActivity extends Activity implements OnClickListener, LocationSource, AMapLocationListener, AMap.OnCameraChangeListener, PoiSearchV2.OnPoiSearchListener, AMap.OnMapClickListener, AMap.OnPOIClickListener {
 
-    private String poiSearchTypes = "050000|060000|070000|080000|090000|100000|110000|120000|130000|140000|160000|170000";
+    NSMapLocationParam param;
     private Marker screenMarker;
     private Marker keywordPointMaker;
     private boolean isLocated;//首次定位标记
@@ -81,6 +95,8 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
     private AMapLocationClientOption mLocationOption;
     private ImageButton btn_gps_location;
 
+    private LocationManager locationManager;
+    String[] locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS};
     private Button cancelBtn;
     private Button sendBtn;
     private AMap aMap;
@@ -135,10 +151,9 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
 
         @Override
         public void selectedPOIChanged(PoiItemV2 selectedPOI) {
-            if(selectedPOI == null){
+            if (selectedPOI == null) {
                 sendBtn.setEnabled(false);
-            }
-            else{
+            } else {
                 sendBtn.setEnabled(true);
             }
         }
@@ -150,15 +165,18 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
         setContentView(R.layout.activity_map_location);
 
         //状态栏沉浸
-        NSStatusBarUtil.setTranslucentStatus(this,true);
+        NSStatusBarUtil.setTranslucentStatus(this, true);
         Intent getIntent = getIntent();
-        String types = getIntent.getStringExtra("types");
-        if(types != null && types.length() > 0){
-            poiSearchTypes = types;
+        Bundle bundle = getIntent.getBundleExtra("param");
+        if (bundle != null) {
+            param = (NSMapLocationParam) bundle.getSerializable("param");
+        } else {
+            param = new NSMapLocationParam();
         }
         initView(savedInstanceState);
         initData();
 
+        checkLocationPermission();
     }
 
     @Override
@@ -184,7 +202,7 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
         mapView.onPause();
     }
 
-    private void initView( Bundle savedInstanceState) {
+    private void initView(Bundle savedInstanceState) {
         mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
 
@@ -232,7 +250,7 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
         aMap.getUiSettings().setAllGesturesEnabled(false);
         aMap.getUiSettings().setLogoPosition(AMapOptions.LOGO_POSITION_BOTTOM_RIGHT);
         aMap.setLocationSource(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+//        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setOnCameraChangeListener(this);// 对amap添加移动地图事件监听器
 
@@ -290,13 +308,22 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
             }
         });
         mSearchView.setOnTouchListener((view, motionEvent) -> {
-          if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-            mDrawerLayout.setToClosed();
-            searchCancel.setVisibility(View.VISIBLE);
-            mAdapter.setResultType(NSRecyclerAdapter.NSRecyclerAdapterResultType.keywordType);
-          }
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                mDrawerLayout.setToClosed();
+                searchCancel.setVisibility(View.VISIBLE);
+                mAdapter.setResultType(NSRecyclerAdapter.NSRecyclerAdapterResultType.keywordType);
+            }
 
             return false;
+        });
+        mSearchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                    hiddeKeyboard(mSearchView.getWindowToken());
+                }
+                return false;
+            }
         });
         mSearchView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -319,7 +346,6 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
                 }
 
 
-
             }
         });
     }
@@ -334,7 +360,7 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
             bottomLayout.scrollTo(0, (int) (maxOffSet * (1 - currentProgress)));
 
             aMap.getUiSettings().setLogoBottomMargin((int) (maxOffSet * (1 - currentProgress) + NSViewUtil.dip2px(NSMapLocationActivity.this, 15)));
-//
+
             aMap.getUiSettings().setLogoLeftMargin(NSViewUtil.getScreenWidth(NSMapLocationActivity.this) - NSViewUtil.dip2px(NSMapLocationActivity.this, 100));
 
         }
@@ -368,24 +394,29 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
             mAdapter.setResultType(NSRecyclerAdapter.NSRecyclerAdapterResultType.normalType);
 
         } else if (view == btn_gps_location) {
-            if (btn_gps_location.isSelected()) {
-                return;
+
+            if (checkLocationPermission()) {
+                if (btn_gps_location.isSelected()) {
+                    return;
+                }
+                if (mAdapter.gpsLocation == null) {
+                    aMap.getUiSettings().setAllGesturesEnabled(false);
+                    isLocated = false;
+                    mlocationClient.startLocation();
+                } else {
+                    btn_gps_location.setSelected(true);
+                    aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mAdapter.gpsLocation, 17f));
+                }
             }
-            if (mAdapter.gpsLocation == null) {
-                aMap.getUiSettings().setAllGesturesEnabled(false);
-                isLocated = false;
-                mlocationClient.startLocation();
-            } else {
-                btn_gps_location.setSelected(true);
-                aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mAdapter.gpsLocation, 17f));
-            }
+
+
         } else if (view == cancelBtn) {
             try {
                 Intent intent = new Intent();
-                JSONObject jsonObject= new JSONObject();
-                jsonObject.put("errCode",-3);
-                jsonObject.put("errorMsg","用户取消了");
-                intent.putExtra("data",jsonObject.toString());
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("errCode", -3);
+                jsonObject.put("errorMsg", "用户取消了");
+                intent.putExtra("data", jsonObject.toString());
                 setResult(RESULT_OK, intent);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
@@ -396,18 +427,18 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
             PoiItemV2 currentPoi = mAdapter.getCurrentPoi();
             try {
                 Intent intent = new Intent();
-                JSONObject jsonObject= new JSONObject();
-                jsonObject.put("errCode",0);
-                jsonObject.put("address",currentPoi.getSnippet());
-                jsonObject.put("name",currentPoi.getTitle());
-                jsonObject.put("province",currentPoi.getProvinceName());
-                jsonObject.put("city",currentPoi.getCityName());
-                jsonObject.put("district",currentPoi.getAdName());
-                jsonObject.put("businessArea",currentPoi.getBusiness().getBusinessArea());
-                jsonObject.put("latitude",currentPoi.getLatLonPoint().getLatitude());
-                jsonObject.put("longitude",currentPoi.getLatLonPoint().getLongitude());
-
-                intent.putExtra("data",jsonObject.toString());
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("errCode", 0);
+                jsonObject.put("address", currentPoi.getSnippet());
+                jsonObject.put("name", currentPoi.getTitle());
+                jsonObject.put("province", currentPoi.getProvinceName());
+                jsonObject.put("city", currentPoi.getCityName());
+                jsonObject.put("district", currentPoi.getAdName());
+                jsonObject.put("businessArea", currentPoi.getBusiness().getBusinessArea());
+                jsonObject.put("latitude", currentPoi.getLatLonPoint().getLatitude());
+                jsonObject.put("longitude", currentPoi.getLatLonPoint().getLongitude());
+                jsonObject.put("errorMsg", "获取成功");
+                intent.putExtra("data", jsonObject.toString());
                 setResult(RESULT_OK, intent);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
@@ -548,12 +579,18 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
     public void onCameraChangeFinish(CameraPosition cameraPosition) {
 
 
-        float distance = AMapUtils.calculateLineDistance(new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude), mAdapter.gpsLocation);
-        if (distance < 5) {
-            btn_gps_location.setSelected(true);
-        } else {
+        if(mAdapter.gpsLocation == null){
             btn_gps_location.setSelected(false);
         }
+        else{
+            float distance = AMapUtils.calculateLineDistance(new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude), mAdapter.gpsLocation);
+            if (distance < 5) {
+                btn_gps_location.setSelected(true);
+            } else {
+                btn_gps_location.setSelected(false);
+            }
+        }
+
         if (!aMap.getUiSettings().isScrollGesturesEnabled()) {
             return;
         }
@@ -571,14 +608,14 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
     @Override
     public void onMapClick(LatLng latLng) {
 
-        Log.d("xxx","onMapClick");
+        Log.d("xxx", "onMapClick");
         hiddeKeyboard(mSearchView.getWindowToken());
         mDrawerLayout.setToOpen();
     }
 
     @Override
     public void onPOIClick(Poi poi) {
-        Log.d("xxx","onPOIClick");
+        Log.d("xxx", "onPOIClick");
         if (mAdapter.resultType == NSRecyclerAdapter.NSRecyclerAdapterResultType.normalType) {
             aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(poi.getCoordinate(), 17f));
         }
@@ -589,14 +626,15 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
     void startSearchPoiWithLatLonPoint(LatLonPoint amapLocation, int page) {
 
         try {
-            Query poiQuery = new Query("", poiSearchTypes, "");
+            Query poiQuery = new Query("", param.getTypes(), param.city);
             poiQuery.setPageSize(20);// 设置每页最多返回多少条poiitem
             poiQuery.setPageNum(page);//设置查询页码
+            poiQuery.setCityLimit(param.cityLimit);
             PoiSearchV2 poiSearch = null;
             poiSearch = new PoiSearchV2(this, poiQuery);
 
             poiSearch.setOnPoiSearchListener(this);
-            poiSearch.setBound(new PoiSearchV2.SearchBound(amapLocation, 10000));//设置周边搜索的中心点以及半径
+            poiSearch.setBound(new PoiSearchV2.SearchBound(amapLocation, param.radius));//设置周边搜索的中心点以及半径
             poiSearch.searchPOIAsyn();
         } catch (AMapException e) {
             throw new RuntimeException(e);
@@ -607,17 +645,20 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
     void startSearchPoiWithKeyword(String keyword, int page) {
 
         try {
-            Query poiQuery = new Query(keyword, poiSearchTypes, "");
+            Query poiQuery = new Query(keyword, param.getTypes(), param.city);
             poiQuery.setPageSize(20);// 设置每页最多返回多少条poiitem
             poiQuery.setPageNum(page);//设置查询页码
+            poiQuery.setCityLimit(param.cityLimit);
             PoiSearchV2 poiSearch = null;
             poiSearch = new PoiSearchV2(this, poiQuery);
 
             poiSearch.setOnPoiSearchListener(this);
-            poiSearch.setBound(new PoiSearchV2.SearchBound(new LatLonPoint(mAdapter.gpsLocation.latitude, mAdapter.gpsLocation.longitude), 0));//设置周边搜索的中心点以及半径
+            if (param.searchType != NSMapLocationParam.NSMapLocationSearchTypeKeyWord && mAdapter.gpsLocation != null) {
+                poiSearch.setBound(new PoiSearchV2.SearchBound(new LatLonPoint(mAdapter.gpsLocation.latitude, mAdapter.gpsLocation.longitude), param.radius));//设置周边搜索的中心点以及半径
+            }
+
             poiSearch.searchPOIAsyn();
         } catch (AMapException e) {
-            System.out.println("AMapException:" + e.getLocalizedMessage());
             throw new RuntimeException(e);
         }
 
@@ -637,7 +678,27 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
             }
             mSmartRefreshLayout.finishLoadMore(true);
         } else {
-            mSmartRefreshLayout.finishLoadMore(false);
+            if (mAdapter.resultType != NSRecyclerAdapter.NSRecyclerAdapterResultType.normalType && poiResultV2.getQuery().getPageSize() == 1 && param.searchType == NSMapLocationParam.NSMapLocationSearchTypeKeyAuto && poiResultV2.getBound() != null) {
+                try {
+                    Query poiQuery = new Query(poiResultV2.getQuery().getQueryString(), param.getTypes(), param.city);
+                    poiQuery.setPageSize(20);// 设置每页最多返回多少条poiitem
+                    poiQuery.setPageNum(1);//设置查询页码
+                    poiQuery.setCityLimit(param.cityLimit);
+                    PoiSearchV2 poiSearch = null;
+                    poiSearch = new PoiSearchV2(this, poiQuery);
+                    poiSearch.setOnPoiSearchListener(this);
+                    poiSearch.searchPOIAsyn();
+
+                } catch (AMapException e) {
+                    throw new RuntimeException(e);
+
+                }
+
+
+            } else {
+                mSmartRefreshLayout.finishLoadMore(false);
+            }
+
         }
 
     }
@@ -647,5 +708,52 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
 
     }
 
+    public boolean isLocationEnabled() {
+        int locationMode = 0;
+        String locationProviders;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                locationMode = Settings.Secure.getInt(
+                        this.getApplicationContext().getContentResolver(),
+                        Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+        } else {
+            locationProviders = Settings.Secure.getString(
+                    this.getApplicationContext().getContentResolver(),
+                    Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
+        }
+    }
 
+    boolean checkLocationPermission() {
+        if (lacksPermission(locationPermissions)) {
+
+            String message = "请在「位置」中允许" + NSAppUtil.getAppName() + "在「使用APP期间」访问位置信息。";
+            new AlertDialog.Builder(this).setTitle("无法获取你的位置信息").setMessage(message).setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(Uri.fromParts("package", getPackageName(), null));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            }).setNegativeButton("取消", null).show();
+            return false;
+        }
+        return true;
+    }
+
+    //如果返回true表示缺少权限
+    public boolean lacksPermission(String[] permissions) {
+        for (String permission : permissions) {
+            //判断是否缺少权限，true=缺少权限
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,63 +1,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/root"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:ignore="MissingClass">
-  <RelativeLayout
-    android:id="@+id/map_view_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-      android:id="@+id/bottom_layout"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent">
-      <RelativeLayout
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_gps_location_bg">
-
-        <ImageButton
-          android:id="@+id/location_btn"
-          android:layout_width="35dp"
-          android:layout_height="35dp"
-          android:layout_centerInParent="true"
-          android:background="@null"
-
-          android:scaleType="fitXY"
-          android:src="@drawable/btn_gps_location"
-
-          />
-      </RelativeLayout>
-    </RelativeLayout>
-    <com.amap.api.maps.MapView
-      android:id="@+id/map_view"
+    android:layout_height="match_parent"
+    tools:ignore="MissingClass">
+  <RelativeLayout
+      android:id="@+id/map_view_layout"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
+    <com.amap.api.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     </com.amap.api.maps.MapView>
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+      <RelativeLayout
+          android:layout_width="42dp"
+          android:layout_height="42dp"
+          android:layout_marginBottom="15dp"
+          android:layout_marginLeft="15dp"
+          android:layout_alignParentBottom="true"
+          android:background="@drawable/btn_gps_location_bg">
+
+        <ImageButton
+            android:id="@+id/location_btn"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:background="@null"
+
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_gps_location"
+
+            />
+      </RelativeLayout>
+    </RelativeLayout>
+
   </RelativeLayout>
   <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:background="@drawable/location_top_shadow_bg">
+      android:layout_width="match_parent"
+      android:layout_height="90dp"
+      android:background="@drawable/location_top_shadow_bg">
 
     <Button
-      android:id="@+id/location_btn_send"
-      android:layout_width="50dp"
-      android:layout_height="30dp"
-      android:layout_marginTop="40dp"
-      android:layout_marginEnd="20dp"
-      android:layout_alignParentEnd="true"
-      android:background="@drawable/btn_send_location"
-      android:enabled="false"
-      android:text="发送"
-      android:textColor="@drawable/btn_send_location_text" />
+        android:id="@+id/location_btn_send"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/btn_send_location"
+        android:enabled="false"
+        android:text="发送"
+        android:textColor="@drawable/btn_send_location_text" />
 
-      <Button
+    <Button
         android:id="@+id/location_btn_cancel"
         android:layout_width="50dp"
         android:layout_height="30dp"
@@ -78,33 +79,35 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="70dp"
-      android:background="@color/white">
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white">
 
       <EditText
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/search_cancel"
-        android:paddingStart="15dp"
-        android:background="#f7f7f7"
-        android:hint="搜索地点"
-        android:textColorHint="#666666"
-        tools:ignore="RtlSymmetry" />
+          android:id="@+id/search_view"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:layout_marginLeft="15dp"
+          android:layout_marginRight="15dp"
+          android:layout_centerVertical="true"
+          android:layout_toStartOf="@+id/search_cancel"
+          android:paddingStart="15dp"
+          android:background="#f7f7f7"
+          android:hint="搜索地点"
+          android:singleLine="true"
+          android:imeOptions="actionSearch"
+          android:textColorHint="#666666"
+          tools:ignore="RtlSymmetry" />
       <TextView
-        android:id="@+id/search_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:text="取消"
-        android:textColor="#0191ff"
-        android:textSize="16sp"
-        android:visibility="gone" />
+          android:id="@+id/search_cancel"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentEnd="true"
+          android:layout_centerVertical="true"
+          android:text="取消"
+          android:textColor="#0191ff"
+          android:textSize="16sp"
+          android:visibility="gone" />
     </RelativeLayout>
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
       android:id="@+id/smart_refresh"
