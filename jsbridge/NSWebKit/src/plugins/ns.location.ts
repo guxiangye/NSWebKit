@@ -1,4 +1,4 @@
-import {GenericAsyncResult} from "./ns";
+import type {GenericAsyncResult} from "./ns";
 
 export declare type ReturnLocationInfo = {
     formattedAddress?: string;

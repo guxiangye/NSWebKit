@@ -5,10 +5,12 @@
   "main": "dist/ns.min.js",
   "types": "./types/index.d.ts",
   "files": [
-    "dist", "types"
+    "dist",
+    "types"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "tsc && webpack",
+    "dev": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -21,11 +23,18 @@
   },
   "author": "neil",
   "license": "ISC",
-  "keywords": ["nswebkit"],
+  "keywords": [
+    "nswebkit"
+  ],
   "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-typescript": "^7.23.3",
     "@rushstack/node-core-library": "^3.55.2",
     "@types/cordova": "^0.0.34",
     "@types/node": "^18.7.18",
+    "babel-loader": "^9.1.3",
+    "clean-webpack-plugin": "^4.0.0",
     "execa": "^7.1.1",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.3.1",

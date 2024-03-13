@@ -10,7 +10,12 @@ import {
     NetworkStatus,
     ParamVoiceBroadcastSwitchStatus,
     GenericCallbackFunc,
-    CallbackNetworkStatusChange
+    CallbackNetworkStatusChange,
+    ParamStorage,
+    ParamRemoveStorage,
+    ParamStorageClear,
+    ParamOpenFileInfo,
+    ParamWaterMarkInfo, ParamConvertImagePathToBase64, ParamOpenAppPage
 } from "../plugins/ns.basic";
 
 export const basic:NSWebKit = <NSWebKit>{
@@ -83,6 +88,56 @@ export const basic:NSWebKit = <NSWebKit>{
 
     async cleanWebviewCache() {
         return await core.cordovaExec("NSBasicPlugin", "cleanWebviewCache");
+    },
+
+    setStorageSync(key: string, data: any, groupName?: string, validSecond?: number) {
+        let value = core.cordovaExecSync("NSBasicPlugin", "setStorageSync", [{ "key": key, "data": data, "groupName": groupName, "validSecond": validSecond }]);
+        return value["data"];
+    },
+
+    async setStorage(param: ParamStorage) {
+        return await core.cordovaExec("NSBasicPlugin", "setStorage", [param]);
+    },
+
+    getStorageSync(key: string, groupName?: string) {
+        let value = core.cordovaExecSync("NSBasicPlugin", "getStorageSync", [{ "key": key, "groupName": groupName }]);
+        return value["data"];
+    },
+
+    async getStorage(param: ParamStorage) {
+        return await core.cordovaExec("NSBasicPlugin", "getStorage", [param]);
+    },
+
+    removeStorageSync(key: string, groupName?: string) {
+        core.cordovaExecSync("NSBasicPlugin", "removeStorageSync", [{ "key": key, "groupName": groupName }]);
+    },
+
+    async removeStorage(param: ParamRemoveStorage) {
+        return await core.cordovaExec("NSBasicPlugin", "removeStorage", [param]);
+    },
+
+    clearStorageSync(groupName?: string) {
+        core.cordovaExecSync("NSBasicPlugin", "clearStorageSync", [{ "groupName": groupName }]);
+    },
+
+    async clearStorage(param?: ParamStorageClear) {
+        return await core.cordovaExec("NSBasicPlugin", "clearStorage", [param]);
+    },
+
+    async openFile(param?: ParamOpenFileInfo) {
+        return await core.cordovaExec("NSBasicPlugin", "openFile", [param]);
+    },
+
+    async addWaterMark(param?: ParamWaterMarkInfo) {
+        return await core.cordovaExec("NSBasicPlugin", "addWaterMark", [param]);
+    },
+
+    async convertImagePathToBase64(param?: ParamConvertImagePathToBase64) {
+        return await core.cordovaExec("NSBasicPlugin", "convertImagePathToBase64", [param]);
+    },
+
+    async openNativePage(param: ParamOpenAppPage) {
+        return await core.cordovaExec("NSBasicPlugin", "openNativePage", [param]);
     },
 
     registerHandler(handlerName: string, handler: GenericCallbackFunc) {

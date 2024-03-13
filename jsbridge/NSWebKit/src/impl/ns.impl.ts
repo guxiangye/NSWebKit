@@ -4,6 +4,7 @@ import {customCamera} from "./ns.customCamera.impl"
 import {scan} from "./ns.scan.impl"
 import {location} from "./ns.location.impl"
 import {share} from "./ns.share.impl"
+import {encrypt} from "./ns.encrypt.impl"
 
 const ns = {
     ...jsPrivateObj,
@@ -12,6 +13,7 @@ const ns = {
     ...scan,
     ...location,
     ...share,
+    ...encrypt
 }
 
 function spIsReady() {

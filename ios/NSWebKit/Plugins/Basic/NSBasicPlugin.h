@@ -59,4 +59,27 @@
 /// 清理webview缓存
 - (void)cleanWebviewCache:(CDVInvokedUrlCommand *)command;
 
+/// 存储相关（同步）
+- (id)setStorageSync:(CDVInvokedUrlCommand *)command;
+- (id)getStorageSync:(CDVInvokedUrlCommand *)command;
+- (id)removeStorageSync:(CDVInvokedUrlCommand *)command;
+- (id)clearStorageSync:(CDVInvokedUrlCommand *)command;
+
+/// 存储相关（异步）
+- (void)setStorage:(CDVInvokedUrlCommand *)command;
+- (void)getStorage:(CDVInvokedUrlCommand *)command;
+- (void)removeStorage:(CDVInvokedUrlCommand *)command;
+- (void)clearStorage:(CDVInvokedUrlCommand *)command;
+
+/// 转换 图片path 为 base64
+- (void)convertImagePathToBase64:(CDVInvokedUrlCommand *)command;
+
+/// 打开APP 原生页面
+- (void)openNativePage:(CDVInvokedUrlCommand *)command;
+
+///  打开文件
+- (void)openFile:(CDVInvokedUrlCommand *)command;
+
+/// 添加水印
+- (void)addWaterMark:(CDVInvokedUrlCommand *)command;
 @end

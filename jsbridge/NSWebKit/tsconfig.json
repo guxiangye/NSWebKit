@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     /* Emit */
     /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    "emitDeclarationOnly": true,
     "declaration": true,
     /* Create source map files for emitted JavaScript files. */
     "sourceMap": true,
@@ -27,7 +28,11 @@
     /* Skip type checking all .d.ts files. */
     "skipLibCheck": true
   },
-  "exclude": ["./script", "./build"],
-  "include": ["./src"],
-  "compileOnSave": false
+  "exclude": ["./script", "./build", "./src/impl"],
+  "include": ["./src/"],
+  "compileOnSave": false,
+  "baseUrl": ".",
+  "paths": {
+    "*": [ "*", "types/*"]
+  }
 }

@@ -1,10 +1,10 @@
-import {GenericCallbackFunc} from "./ns.basic";
+import type {GenericCallbackFunc} from "./ns.basic";
 
-interface NSExecSyncInterFace {
+declare interface NSExecSyncInterFace {
     syncExec(pluginName: string, apiName: string, arr: any[]): any;
 }
 
-export type core = {
+export declare type Core = {
     initialized: boolean;
     enableDebug: boolean;
     messageHandlers: Map<string, Array<Function>>;

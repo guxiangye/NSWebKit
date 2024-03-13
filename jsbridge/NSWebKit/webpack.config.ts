@@ -1,8 +1,9 @@
 const TerserPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 console.log("com.nswebkit.build.ts", "start.")
 
 module.exports = {
-    mode: 'none',
+    mode: 'production',
     entry: {
         [`ns`]: './src/impl/ns.impl.ts',
         [`ns.min`]: './src/impl/ns.impl.ts'
@@ -23,13 +24,17 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: "ts-loader",
+                test: /\.(js|ts)$/,
+                // use: "ts-loader",
+                loader: "babel-loader",
                 exclude: /node_modules/
             }
         ]
     },
     resolve: {
-        extensions: [".ts"] // 解析对文件格式
-    }
+        extensions: [".js", ".ts", ".json"] // 解析对文件格式
+    },
+    plugins: [
+        new CleanWebpackPlugin()
+    ]
 }

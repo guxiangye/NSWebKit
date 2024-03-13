@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString* const NSSchemeKey = @"spfile";
+static NSString* const NSSchemeKey = @"nsfile";
 
 @interface NSImageURLProtocol : NSURLProtocol
 

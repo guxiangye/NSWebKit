@@ -1,7 +1,7 @@
-import {core, NSExecSync} from "../plugins/ns.core"
+import {Core, NSExecSync} from "../plugins/ns.core"
 import {GenericCallbackFunc} from "../plugins/ns.basic";
 
-const core: core = <core>{
+const core: Core = <Core>{
     initialized: false,
     enableDebug: false,
     messageHandlers: new Map<string, Function[]>(),

@@ -58,7 +58,7 @@ export declare type ReturnNotiSwitchStatus = {
     status: boolean;
 };
 export declare type GenericCallbackFunc<T = any> = (data: T) => void;
-export type CallbackNetworkStatusChange = {
+export declare type CallbackNetworkStatusChange = {
     networkType: NetworkStatus;
 };
 export declare type ParamVoiceBroadcastSwitchStatus = {
@@ -66,6 +66,101 @@ export declare type ParamVoiceBroadcastSwitchStatus = {
 };
 export declare type ReturnVoiceBroadcastSwitchStatus = {
     status: boolean;
+};
+export declare type ParamStorage = {
+    groupName?: string;
+    key: string;
+    data: any;
+};
+export declare type ParamRemoveStorage = {
+    groupName?: string;
+    key: string;
+};
+export declare type ReturnStorageResult = {
+    data: any;
+};
+export declare type ParamStorageClear = {
+    groupName?: string;
+};
+export declare type ParamOpenFileInfo = {
+    /** 文件地址 */
+    url: string;
+    /** fileName 必须包含后缀 . 为空时从url里截取 */
+    fileName?: string;
+};
+export declare const enum SPWaterMarkPosition {
+    /** 左上 */
+    SPWaterMarkLeftTop = 0,
+    /** 右上 */
+    SPWaterMarkRightTop = 1,
+    /** 左下 */
+    SPWaterMarkLeftBottom = 2,
+    /** 右下 */
+    SPWaterMarkRightBottom = 3,
+    /** 居中 */
+    SPWaterMarkCenter = 4
+}
+export declare type ParamWaterMarkInfo = {
+    /** 水印文字 */
+    text: string;
+    /**
+     * 图片base64
+     **/
+    base64Image?: string;
+    /**
+     * 图片路径 和 图片base64 二选一 优先使用路径
+     **/
+    imagePath?: string;
+    /**
+     * 文字颜色 #000000 默认#000000
+     **/
+    color?: string;
+    /**
+     * 文字背景颜色 默认透明
+     **/
+    backgroundColor?: string;
+    /**
+     * 背景圆角
+     **/
+    cornerRadius?: number;
+    /**
+     * 文字大小
+     **/
+    fontSize?: number;
+    /**
+     * 水印位置 默认 右下
+     **/
+    position?: SPWaterMarkPosition;
+    /**
+     * 外边距 默认8像素 如果居中,边距不生效
+     **/
+    margin?: number;
+    /**
+     * 内边距 默认8像素
+     **/
+    padding?: number;
+};
+export declare type ReturnAddWaterMarkResult = {
+    /**
+     * 添加水印之后的图片路径
+     **/
+    path?: string;
+};
+export declare type ParamConvertImagePathToBase64 = {
+    /**
+     * 图片路径
+     **/
+    path: string;
+};
+export declare type ReturnConvertImagePathToBase64Result = {
+    /**
+     * 图片 base64
+     **/
+    base64Image?: string;
+};
+export declare type ParamOpenAppPage = {
+    pageName: string;
+    extInfo?: any;
 };
 declare module "./ns" {
     interface NSWebKit {
@@ -142,6 +237,54 @@ declare module "./ns" {
          * 清理webview缓存
          */
         cleanWebviewCache(): Promise<GenericAsyncResult<undefined>>;
+        /**
+         * 同步存储
+         **/
+        setStorageSync(key: string, data: any, groupName?: string, validSecond?: number): void;
+        /**
+         * 异步存储
+         **/
+        setStorage(param: ParamStorage): Promise<GenericAsyncResult<undefined>>;
+        /**
+         * 同步获取存储
+         **/
+        getStorageSync(key: string, groupName?: string): any;
+        /**
+         * 异步获取存储
+         **/
+        getStorage(param: ParamStorage): Promise<GenericAsyncResult<ReturnStorageResult>>;
+        /**
+         * 同步移除存储
+         **/
+        removeStorageSync(key: string, groupName?: string): void;
+        /**
+         * 移除存储
+         **/
+        removeStorage(param: ParamRemoveStorage): Promise<GenericAsyncResult<undefined>>;
+        /**
+         * 同步清除存储
+         **/
+        clearStorageSync(key: string, groupName?: string): void;
+        /**
+         * 清除存储
+         **/
+        clearStorage(param?: ParamStorageClear): Promise<GenericAsyncResult<undefined>>;
+        /**
+         * 打开PDF文件
+         **/
+        openFile(param?: ParamOpenFileInfo): Promise<GenericAsyncResult<undefined>>;
+        /**
+         * 图片添加水印
+         **/
+        addWaterMark(param?: ParamWaterMarkInfo): Promise<GenericAsyncResult<ReturnAddWaterMarkResult>>;
+        /**
+         * 本地图片path 转 base64
+         **/
+        convertImagePathToBase64(param?: ParamConvertImagePathToBase64): Promise<GenericAsyncResult<ReturnConvertImagePathToBase64Result>>;
+        /**
+         * 跳转App原生界面
+         **/
+        openNativePage(param: ParamOpenAppPage): Promise<GenericAsyncResult<undefined>>;
         /**
          * H5 注册一个句柄,提供给Native调用
          */
