@@ -358,10 +358,10 @@
 		2F92C2D02BA1CAE900C59B99 /* NSKit */ = {
 			isa = PBXGroup;
 			children = (
+				2F92C31B2BA1CAE900C59B99 /* NSAnalyticsSDK */,
 				2F92C2D12BA1CAE900C59B99 /* NSCheckAppVersionUpgrade */,
 				2F92C2D82BA1CAE900C59B99 /* NSCore */,
 				2F92C2E22BA1CAE900C59B99 /* NSNetwork */,
-				2F92C31B2BA1CAE900C59B99 /* NSAnalyticsSDK */,
 			);
 			path = NSKit;
 			sourceTree = "<group>";
@@ -370,11 +370,11 @@
 			isa = PBXGroup;
 			children = (
 				2F92C2D22BA1CAE900C59B99 /* CheckVersionReq.h */,
-				2F92C2D32BA1CAE900C59B99 /* NSCheckAppVersionUpgrade.m */,
-				2F92C2D42BA1CAE900C59B99 /* CheckVersionResp.h */,
 				2F92C2D52BA1CAE900C59B99 /* CheckVersionReq.m */,
-				2F92C2D62BA1CAE900C59B99 /* NSCheckAppVersionUpgrade.h */,
+				2F92C2D42BA1CAE900C59B99 /* CheckVersionResp.h */,
 				2F92C2D72BA1CAE900C59B99 /* CheckVersionResp.m */,
+				2F92C2D62BA1CAE900C59B99 /* NSCheckAppVersionUpgrade.h */,
+				2F92C2D32BA1CAE900C59B99 /* NSCheckAppVersionUpgrade.m */,
 			);
 			path = NSCheckAppVersionUpgrade;
 			sourceTree = "<group>";
@@ -392,12 +392,12 @@
 		2F92C2D92BA1CAE900C59B99 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				2F92C2DA2BA1CAE900C59B99 /* NSString+NS.m */,
-				2F92C2DB2BA1CAE900C59B99 /* NSData+Conversion.m */,
 				2F92C2DC2BA1CAE900C59B99 /* NSData+Base64.h */,
-				2F92C2DD2BA1CAE900C59B99 /* NSString+NS.h */,
-				2F92C2DE2BA1CAE900C59B99 /* NSData+Conversion.h */,
 				2F92C2DF2BA1CAE900C59B99 /* NSData+Base64.m */,
+				2F92C2DE2BA1CAE900C59B99 /* NSData+Conversion.h */,
+				2F92C2DB2BA1CAE900C59B99 /* NSData+Conversion.m */,
+				2F92C2DD2BA1CAE900C59B99 /* NSString+NS.h */,
+				2F92C2DA2BA1CAE900C59B99 /* NSString+NS.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -423,14 +423,14 @@
 		2F92C2E42BA1CAE900C59B99 /* NSMerchantGateway */ = {
 			isa = PBXGroup;
 			children = (
-				2F92C2E52BA1CAE900C59B99 /* NSMerchantRequest.h */,
-				2F92C2E62BA1CAE900C59B99 /* NSMerchantNetCallImp.m */,
-				2F92C2E72BA1CAE900C59B99 /* NSMerchantHeaderInterceptor.m */,
-				2F92C2E82BA1CAE900C59B99 /* NSMerchantGenericNetResponse.m */,
-				2F92C2E92BA1CAE900C59B99 /* NSMerchantRequest.m */,
-				2F92C2EA2BA1CAE900C59B99 /* NSMerchantHeaderInterceptor.h */,
-				2F92C2EB2BA1CAE900C59B99 /* NSMerchantNetCallImp.h */,
 				2F92C2EC2BA1CAE900C59B99 /* NSMerchantGenericNetResponse.h */,
+				2F92C2E82BA1CAE900C59B99 /* NSMerchantGenericNetResponse.m */,
+				2F92C2EA2BA1CAE900C59B99 /* NSMerchantHeaderInterceptor.h */,
+				2F92C2E72BA1CAE900C59B99 /* NSMerchantHeaderInterceptor.m */,
+				2F92C2EB2BA1CAE900C59B99 /* NSMerchantNetCallImp.h */,
+				2F92C2E62BA1CAE900C59B99 /* NSMerchantNetCallImp.m */,
+				2F92C2E52BA1CAE900C59B99 /* NSMerchantRequest.h */,
+				2F92C2E92BA1CAE900C59B99 /* NSMerchantRequest.m */,
 			);
 			path = NSMerchantGateway;
 			sourceTree = "<group>";
@@ -439,13 +439,13 @@
 			isa = PBXGroup;
 			children = (
 				2F92C2EE2BA1CAE900C59B99 /* NSWalletGenericNetResponse.h */,
-				2F92C2EF2BA1CAE900C59B99 /* NSWalletInterceptor.h */,
-				2F92C2F02BA1CAE900C59B99 /* NSWalletRequest.m */,
-				2F92C2F12BA1CAE900C59B99 /* NSWalletNetCallImp.h */,
 				2F92C2F22BA1CAE900C59B99 /* NSWalletGenericNetResponse.m */,
+				2F92C2EF2BA1CAE900C59B99 /* NSWalletInterceptor.h */,
 				2F92C2F32BA1CAE900C59B99 /* NSWalletInterceptor.m */,
+				2F92C2F12BA1CAE900C59B99 /* NSWalletNetCallImp.h */,
 				2F92C2F42BA1CAE900C59B99 /* NSWalletNetCallImp.m */,
 				2F92C2F52BA1CAE900C59B99 /* NSWalletRequest.h */,
+				2F92C2F02BA1CAE900C59B99 /* NSWalletRequest.m */,
 			);
 			path = NSWalletGateway;
 			sourceTree = "<group>";
@@ -453,32 +453,32 @@
 		2F92C2F62BA1CAE900C59B99 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2F92C2F72BA1CAE900C59B99 /* NSSecurityPolicy.h */,
-				2F92C2F82BA1CAE900C59B99 /* NSNetwork.h */,
-				2F92C2F92BA1CAE900C59B99 /* NSNetworkInterceptor.m */,
-				2F92C2FA2BA1CAE900C59B99 /* NSNetworkSessionManager.h */,
-				2F92C2FB2BA1CAE900C59B99 /* NSPNetwork.h */,
 				2F92C2FC2BA1CAE900C59B99 /* NSHttpManager.h */,
+				2F92C30C2BA1CAE900C59B99 /* NSHttpManager.m */,
+				2F92C3082BA1CAE900C59B99 /* NSIPDirect */,
+				2F92C2FF2BA1CAE900C59B99 /* NSNetCall.h */,
+				2F92C31A2BA1CAE900C59B99 /* NSNetCall.m */,
+				2F92C3032BA1CAE900C59B99 /* NSNetCallImp.h */,
+				2F92C3172BA1CAE900C59B99 /* NSNetCallImp.m */,
+				2F92C3012BA1CAE900C59B99 /* NSNetProtocol.h */,
+				2F92C30B2BA1CAE900C59B99 /* NSNetRequest.h */,
 				2F92C2FD2BA1CAE900C59B99 /* NSNetRequest.m */,
 				2F92C2FE2BA1CAE900C59B99 /* NSNetResponse.h */,
-				2F92C2FF2BA1CAE900C59B99 /* NSNetCall.h */,
-				2F92C3002BA1CAE900C59B99 /* NSSingleHttpToolBox.h */,
-				2F92C3012BA1CAE900C59B99 /* NSNetProtocol.h */,
-				2F92C3022BA1CAE900C59B99 /* NSNetworkConfig.h */,
-				2F92C3032BA1CAE900C59B99 /* NSNetCallImp.h */,
-				2F92C3042BA1CAE900C59B99 /* NSNetworkInterceptor.h */,
-				2F92C3052BA1CAE900C59B99 /* NSNetwork.m */,
-				2F92C3062BA1CAE900C59B99 /* NSSecurityPolicy.m */,
 				2F92C3072BA1CAE900C59B99 /* NSNetResponse.m */,
-				2F92C3082BA1CAE900C59B99 /* NSIPDirect */,
-				2F92C30B2BA1CAE900C59B99 /* NSNetRequest.h */,
-				2F92C30C2BA1CAE900C59B99 /* NSHttpManager.m */,
-				2F92C30D2BA1CAE900C59B99 /* Secret */,
-				2F92C3162BA1CAE900C59B99 /* NSNetworkSessionManager.m */,
-				2F92C3172BA1CAE900C59B99 /* NSNetCallImp.m */,
+				2F92C2F82BA1CAE900C59B99 /* NSNetwork.h */,
+				2F92C3052BA1CAE900C59B99 /* NSNetwork.m */,
+				2F92C3022BA1CAE900C59B99 /* NSNetworkConfig.h */,
 				2F92C3182BA1CAE900C59B99 /* NSNetworkConfig.m */,
+				2F92C3042BA1CAE900C59B99 /* NSNetworkInterceptor.h */,
+				2F92C2F92BA1CAE900C59B99 /* NSNetworkInterceptor.m */,
+				2F92C2FA2BA1CAE900C59B99 /* NSNetworkSessionManager.h */,
+				2F92C3162BA1CAE900C59B99 /* NSNetworkSessionManager.m */,
+				2F92C2FB2BA1CAE900C59B99 /* NSPNetwork.h */,
+				2F92C2F72BA1CAE900C59B99 /* NSSecurityPolicy.h */,
+				2F92C3062BA1CAE900C59B99 /* NSSecurityPolicy.m */,
+				2F92C3002BA1CAE900C59B99 /* NSSingleHttpToolBox.h */,
 				2F92C3192BA1CAE900C59B99 /* NSSingleHttpToolBox.m */,
-				2F92C31A2BA1CAE900C59B99 /* NSNetCall.m */,
+				2F92C30D2BA1CAE900C59B99 /* Secret */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -495,14 +495,14 @@
 		2F92C30D2BA1CAE900C59B99 /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				2F92C30E2BA1CAE900C59B99 /* RSAEncryptor.h */,
-				2F92C30F2BA1CAE900C59B99 /* RSAManager.h */,
-				2F92C3102BA1CAE900C59B99 /* NSSecurityRSA.h */,
-				2F92C3112BA1CAE900C59B99 /* AESEncryptor.m */,
-				2F92C3122BA1CAE900C59B99 /* RSAEncryptor.m */,
-				2F92C3132BA1CAE900C59B99 /* NSSecurityRSA.m */,
-				2F92C3142BA1CAE900C59B99 /* RSAManager.m */,
 				2F92C3152BA1CAE900C59B99 /* AESEncryptor.h */,
+				2F92C3112BA1CAE900C59B99 /* AESEncryptor.m */,
+				2F92C3102BA1CAE900C59B99 /* NSSecurityRSA.h */,
+				2F92C3132BA1CAE900C59B99 /* NSSecurityRSA.m */,
+				2F92C30E2BA1CAE900C59B99 /* RSAEncryptor.h */,
+				2F92C3122BA1CAE900C59B99 /* RSAEncryptor.m */,
+				2F92C30F2BA1CAE900C59B99 /* RSAManager.h */,
+				2F92C3142BA1CAE900C59B99 /* RSAManager.m */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -518,39 +518,39 @@
 		2F92C31C2BA1CAE900C59B99 /* NSAnalyticsSDK */ = {
 			isa = PBXGroup;
 			children = (
-				2F92C31D2BA1CAE900C59B99 /* NSAutoTrackUtils.m */,
-				2F92C31E2BA1CAE900C59B99 /* NSAutoTrack.h */,
-				2F92C31F2BA1CAE900C59B99 /* NSAnalyticsSDK+AutoTrack.h */,
-				2F92C3202BA1CAE900C59B99 /* UIGestureRecognizer+NSAutoTrack.m */,
-				2F92C3212BA1CAE900C59B99 /* NSAutoTrackElementIsIgnoredProtocol.m */,
-				2F92C3222BA1CAE900C59B99 /* NSAutoTrackConstants.m */,
-				2F92C3232BA1CAE900C59B99 /* NSAnalyticsReachability.m */,
-				2F92C3242BA1CAE900C59B99 /* UIView+NSAutoTrack.h */,
-				2F92C3252BA1CAE900C59B99 /* NSAnalyticsManager.h */,
-				2F92C3262BA1CAE900C59B99 /* NSAnalyticsSDK.h */,
 				2F92C3272BA1CAE900C59B99 /* NSAnalyticsExtraPropsProtocol.h */,
-				2F92C3282BA1CAE900C59B99 /* UIImage+NSAutoTrack.m */,
-				2F92C3292BA1CAE900C59B99 /* NSAutoTrackProperty.h */,
-				2F92C32A2BA1CAE900C59B99 /* UIViewController+NSAutoTrack.h */,
-				2F92C32B2BA1CAE900C59B99 /* NSFMDB */,
-				2F92C3372BA1CAE900C59B99 /* NSAspects.m */,
-				2F92C3382BA1CAE900C59B99 /* UIView+NSAutoTrackTableHeaderFooterView.h */,
-				2F92C3392BA1CAE900C59B99 /* UIGestureRecognizer+NSAutoTrack.h */,
-				2F92C33A2BA1CAE900C59B99 /* NSAnalyticsSDK+AutoTrack.m */,
-				2F92C33B2BA1CAE900C59B99 /* NSAutoTrack.m */,
-				2F92C33C2BA1CAE900C59B99 /* NSAutoTrackUtils.h */,
-				2F92C33D2BA1CAE900C59B99 /* NSAutoTrackProtocol.h */,
-				2F92C33E2BA1CAE900C59B99 /* UIView+NSAutoTrack.m */,
+				2F92C3442BA1CAE900C59B99 /* NSAnalyticsExtraPropsProtocol.m */,
+				2F92C3252BA1CAE900C59B99 /* NSAnalyticsManager.h */,
 				2F92C33F2BA1CAE900C59B99 /* NSAnalyticsManager.m */,
 				2F92C3402BA1CAE900C59B99 /* NSAnalyticsReachability.h */,
-				2F92C3412BA1CAE900C59B99 /* NSAutoTrackConstants.h */,
-				2F92C3422BA1CAE900C59B99 /* NSAutoTrackElementIsIgnoredProtocol.h */,
-				2F92C3432BA1CAE900C59B99 /* UIImage+NSAutoTrack.h */,
-				2F92C3442BA1CAE900C59B99 /* NSAnalyticsExtraPropsProtocol.m */,
+				2F92C3232BA1CAE900C59B99 /* NSAnalyticsReachability.m */,
+				2F92C3262BA1CAE900C59B99 /* NSAnalyticsSDK.h */,
 				2F92C3452BA1CAE900C59B99 /* NSAnalyticsSDK.m */,
-				2F92C3462BA1CAE900C59B99 /* UIView+NSAutoTrackTableHeaderFooterView.m */,
+				2F92C31F2BA1CAE900C59B99 /* NSAnalyticsSDK+AutoTrack.h */,
+				2F92C33A2BA1CAE900C59B99 /* NSAnalyticsSDK+AutoTrack.m */,
 				2F92C3472BA1CAE900C59B99 /* NSAspects.h */,
+				2F92C3372BA1CAE900C59B99 /* NSAspects.m */,
+				2F92C31E2BA1CAE900C59B99 /* NSAutoTrack.h */,
+				2F92C33B2BA1CAE900C59B99 /* NSAutoTrack.m */,
+				2F92C3412BA1CAE900C59B99 /* NSAutoTrackConstants.h */,
+				2F92C3222BA1CAE900C59B99 /* NSAutoTrackConstants.m */,
+				2F92C3422BA1CAE900C59B99 /* NSAutoTrackElementIsIgnoredProtocol.h */,
+				2F92C3212BA1CAE900C59B99 /* NSAutoTrackElementIsIgnoredProtocol.m */,
+				2F92C3292BA1CAE900C59B99 /* NSAutoTrackProperty.h */,
+				2F92C33D2BA1CAE900C59B99 /* NSAutoTrackProtocol.h */,
+				2F92C33C2BA1CAE900C59B99 /* NSAutoTrackUtils.h */,
+				2F92C31D2BA1CAE900C59B99 /* NSAutoTrackUtils.m */,
 				2F92C3482BA1CAE900C59B99 /* NSDataManager */,
+				2F92C32B2BA1CAE900C59B99 /* NSFMDB */,
+				2F92C3392BA1CAE900C59B99 /* UIGestureRecognizer+NSAutoTrack.h */,
+				2F92C3202BA1CAE900C59B99 /* UIGestureRecognizer+NSAutoTrack.m */,
+				2F92C3432BA1CAE900C59B99 /* UIImage+NSAutoTrack.h */,
+				2F92C3282BA1CAE900C59B99 /* UIImage+NSAutoTrack.m */,
+				2F92C3242BA1CAE900C59B99 /* UIView+NSAutoTrack.h */,
+				2F92C33E2BA1CAE900C59B99 /* UIView+NSAutoTrack.m */,
+				2F92C3382BA1CAE900C59B99 /* UIView+NSAutoTrackTableHeaderFooterView.h */,
+				2F92C3462BA1CAE900C59B99 /* UIView+NSAutoTrackTableHeaderFooterView.m */,
+				2F92C32A2BA1CAE900C59B99 /* UIViewController+NSAutoTrack.h */,
 				2F92C34F2BA1CAE900C59B99 /* UIViewController+NSAutoTrack.m */,
 			);
 			path = NSAnalyticsSDK;
@@ -559,17 +559,17 @@
 		2F92C32B2BA1CAE900C59B99 /* NSFMDB */ = {
 			isa = PBXGroup;
 			children = (
-				2F92C32C2BA1CAE900C59B99 /* NSFMDatabaseAdditions.h */,
-				2F92C32D2BA1CAE900C59B99 /* NSFMResultSet.h */,
-				2F92C32E2BA1CAE900C59B99 /* NSFMDatabase.m */,
-				2F92C32F2BA1CAE900C59B99 /* NSFMDatabaseQueue.m */,
-				2F92C3302BA1CAE900C59B99 /* NSFMDatabasePool.m */,
-				2F92C3312BA1CAE900C59B99 /* NSFMDatabaseAdditions.m */,
 				2F92C3322BA1CAE900C59B99 /* NSFMDatabase.h */,
-				2F92C3332BA1CAE900C59B99 /* NSFMResultSet.m */,
-				2F92C3342BA1CAE900C59B99 /* NSFMDatabaseQueue.h */,
-				2F92C3352BA1CAE900C59B99 /* NSFMDB.h */,
+				2F92C32E2BA1CAE900C59B99 /* NSFMDatabase.m */,
+				2F92C32C2BA1CAE900C59B99 /* NSFMDatabaseAdditions.h */,
+				2F92C3312BA1CAE900C59B99 /* NSFMDatabaseAdditions.m */,
 				2F92C3362BA1CAE900C59B99 /* NSFMDatabasePool.h */,
+				2F92C3302BA1CAE900C59B99 /* NSFMDatabasePool.m */,
+				2F92C3342BA1CAE900C59B99 /* NSFMDatabaseQueue.h */,
+				2F92C32F2BA1CAE900C59B99 /* NSFMDatabaseQueue.m */,
+				2F92C3352BA1CAE900C59B99 /* NSFMDB.h */,
+				2F92C32D2BA1CAE900C59B99 /* NSFMResultSet.h */,
+				2F92C3332BA1CAE900C59B99 /* NSFMResultSet.m */,
 			);
 			path = NSFMDB;
 			sourceTree = "<group>";
