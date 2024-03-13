@@ -10,7 +10,7 @@
 #import "LBXScanNative.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void (^SDPScanResultBlock)(NSDictionary *result);
+typedef void (^NSScanResultBlock)(NSDictionary *result);
 
 
 
@@ -22,7 +22,7 @@ typedef void (^SDPScanResultBlock)(NSDictionary *result);
 //['qrCode','barCode'] 可选值:qrCode:二维码;barCode:条码
 @property(nonatomic,copy)NSArray *supportScanTypeArray;
 
-@property(nonatomic,copy)SDPScanResultBlock scanResultBlock;
+@property(nonatomic,copy)NSScanResultBlock scanResultBlock;
 
 
 /**
