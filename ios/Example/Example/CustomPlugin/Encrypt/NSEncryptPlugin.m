@@ -6,7 +6,7 @@
 //
 
 #import "NSEncryptPlugin.h"
-//#import "NSMerchantHeaderInterceptor.h"
+#import "NSMerchantHeaderInterceptor.h"
 
 @implementation NSEncryptPlugin
 
@@ -14,16 +14,16 @@
 -(void)encryptAndCalculateMac:(CDVInvokedUrlCommand *)command{
     NSDictionary *dic = command.arguments.firstObject;
     
-//    NSMerchantHeaderInterceptor *interceptor = [[NSMerchantHeaderInterceptor alloc] initWithPublicKey:@"publicKey"];
-//    NSMutableDictionary *result =  @{}.mutableCopy;
-//    NSDictionary *data= [interceptor encryptAndCalculateMac:dic];
-//    result[@"data"]=data?:@{};
-//    result[@"errCode"]=@0;
-//    
-//    CDVPluginResult *plugResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
-//    dispatch_async(dispatch_get_main_queue(), ^() {
-//        [self.commandDelegate sendPluginResult:plugResult callbackId:command.callbackId];
-//    });
+    NSMerchantHeaderInterceptor *interceptor = [[NSMerchantHeaderInterceptor alloc] initWithPublicKey:@"publicKey"];
+    NSMutableDictionary *result =  @{}.mutableCopy;
+    NSDictionary *data= [interceptor encryptAndCalculateMac:dic];
+    result[@"data"]=data?:@{};
+    result[@"errCode"]=@0;
+    
+    CDVPluginResult *plugResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
+    dispatch_async(dispatch_get_main_queue(), ^() {
+        [self.commandDelegate sendPluginResult:plugResult callbackId:command.callbackId];
+    });
 }
 
 @end
