@@ -24,8 +24,11 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    NSString *url = @"wwww/index.html";
-    url = @"http://10.241.86.29:5173";
+    NSString *url = @"w/index.html";
+    // 加载本地包
+//    url = @"www/index.html";
+    // 推荐加载本地启动node服务地址
+//    url = @"http://10.241.86.29:5173";
     NSWebViewController *webVC = [NSWebViewController getWebviewControllerWithConfig:@{ @"hidden": @YES, @"url": url, @"translucentStatusBars": @YES } fetchInitialUrlCallBack:NULL fetchUserAgentCallback:NULL startedCallback:NULL finishedCallback:NULL receiveTitleCallback:NULL webResourceErrorCallback:NULL];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webVC];
     self.window.rootViewController = nav;
