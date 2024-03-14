@@ -3,6 +3,6 @@ import {NSWebKit} from "../plugins/ns";
 
 export const encrypt:NSWebKit = <NSWebKit>{
     async encryptAndCalculateMac(param: any) {
-        return await core.cordovaExec("SPEncryptPlugin", "encryptAndCalculateMac", [param]);
+        return await core.cordovaExec("NSEncryptPlugin", "encryptAndCalculateMac", [param]);
     }
 }

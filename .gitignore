@@ -6,6 +6,7 @@ ios/Example/Example.xcworkspace/xcuserdata
 .idea
 .gradle
 .git
+.dist/
 
 package-lock.json
 *.DS_Store

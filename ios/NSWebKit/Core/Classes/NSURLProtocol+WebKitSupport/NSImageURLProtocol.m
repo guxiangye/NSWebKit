@@ -22,7 +22,7 @@ static NSString* const NSFilteredKey = @"NSFilteredKey";
 
 /** 决定是否处理该请求 */
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if([request.URL.scheme isEqualToString:NSFilteredKey] && [NSURLProtocol propertyForKey:NSFilteredKey inRequest:request] == nil){
+    if([request.URL.scheme isEqualToString:NSSchemeKey] && [NSURLProtocol propertyForKey:NSSchemeKey inRequest:request] == nil){
         return YES;
     }
     return NO;

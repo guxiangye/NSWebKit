@@ -1,5 +1,5 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
+/******/     "use strict";
 var __webpack_exports__ = {};
 
 // UNUSED EXPORTS: default
@@ -874,7 +874,7 @@ var encrypt = {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return ns_core_impl.cordovaExec("SPEncryptPlugin", "encryptAndCalculateMac", [param]);
+            return ns_core_impl.cordovaExec("NSEncryptPlugin", "encryptAndCalculateMac", [param]);
           case 2:
             return _context.abrupt("return", _context.sent);
           case 3:
