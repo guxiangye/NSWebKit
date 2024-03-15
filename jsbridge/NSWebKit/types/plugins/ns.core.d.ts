@@ -1,6 +1,6 @@
 import type { GenericCallbackFunc } from "./ns.basic";
-declare interface NSExecSyncInterFace {
-    syncExec(pluginName: string, apiName: string, arr: any[]): any;
+export declare interface NSExecSyncInterFace {
+    syncExec(pluginName: string, apiName: string, arr: string): any;
 }
 export declare type Core = {
     initialized: boolean;
@@ -28,7 +28,6 @@ export declare type Core = {
     noticePageHide(): void;
     wrapAsyncResult(data: any): any;
 };
-export declare var NSExecSync: NSExecSyncInterFace;
 declare global {
     interface Navigator {
         connection: {
@@ -36,4 +35,3 @@ declare global {
         };
     }
 }
-export {};

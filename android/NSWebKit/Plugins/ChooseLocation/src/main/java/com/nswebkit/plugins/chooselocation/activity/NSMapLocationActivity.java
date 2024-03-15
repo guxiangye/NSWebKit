@@ -678,7 +678,7 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
             }
             mSmartRefreshLayout.finishLoadMore(true);
         } else {
-            if (mAdapter.resultType != NSRecyclerAdapter.NSRecyclerAdapterResultType.normalType && poiResultV2.getQuery().getPageSize() == 1 && param.searchType == NSMapLocationParam.NSMapLocationSearchTypeKeyAuto && poiResultV2.getBound() != null) {
+            if (mAdapter.resultType != NSRecyclerAdapter.NSRecyclerAdapterResultType.normalType && poiResultV2.getQuery().getPageNum() == 1 && param.searchType == NSMapLocationParam.NSMapLocationSearchTypeKeyAuto && poiResultV2.getBound() != null) {
                 try {
                     Query poiQuery = new Query(poiResultV2.getQuery().getQueryString(), param.getTypes(), param.city);
                     poiQuery.setPageSize(20);// 设置每页最多返回多少条poiitem
@@ -706,27 +706,6 @@ public class NSMapLocationActivity extends Activity implements OnClickListener, 
     @Override
     public void onPoiItemSearched(PoiItemV2 poiItemV2, int i) {
 
-    }
-
-    public boolean isLocationEnabled() {
-        int locationMode = 0;
-        String locationProviders;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            try {
-                locationMode = Settings.Secure.getInt(
-                        this.getApplicationContext().getContentResolver(),
-                        Settings.Secure.LOCATION_MODE);
-            } catch (Settings.SettingNotFoundException e) {
-                e.printStackTrace();
-                return false;
-            }
-            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
-        } else {
-            locationProviders = Settings.Secure.getString(
-                    this.getApplicationContext().getContentResolver(),
-                    Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-            return !TextUtils.isEmpty(locationProviders);
-        }
     }
 
     boolean checkLocationPermission() {

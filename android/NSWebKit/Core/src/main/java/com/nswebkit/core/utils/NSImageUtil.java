@@ -3,11 +3,13 @@ package com.nswebkit.core.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.apache.cordova.CallbackContext;
@@ -32,6 +34,19 @@ import top.zibin.luban.OnCompressListener;
  */
 public class NSImageUtil {
 
+    /**
+     * 将一个view转换为Bitmap
+     * @param view
+     * @return
+     */
+    public static Bitmap convertViewToBitmap(View view){
+        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view.buildDrawingCache();
+        Bitmap bitmap = view.getDrawingCache();
+        return bitmap;
+    }
+
     public static Bitmap convertBase64ToPic(String base64) {
         String value = base64;
         if (base64.contains(",")) {
@@ -52,29 +67,6 @@ public class NSImageUtil {
             callbackObject.put("errorMsg", "success");
         }
         callbackContext.success(callbackObject);
-
-//        File photoFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "IMG_" + String.valueOf(System.currentTimeMillis()) + ".jpg");
-//        try {
-//            FileOutputStream fos = new FileOutputStream(photoFile);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-//            fos.flush();
-//            fos.close();
-//
-//        } catch (Exception e) {
-//            callbackObject.put("errCode", -1);
-//            callbackObject.put("errorMsg", e.getLocalizedMessage());
-//            callbackContext.success(callbackObject);
-//            e.printStackTrace();
-//        }
-//
-//        // 把文件插入到系统图库
-//        try {
-//            MediaStore.Images.Media.insertImage(context.getContentResolver(), photoFile.getAbsolutePath(), photoFile.getName(), null);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        // 通知图库更新
-//        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
     }
 
     /**
@@ -101,9 +93,7 @@ public class NSImageUtil {
             }
         }).setCompressListener(new OnCompressListener() {
             @Override
-            public void onStart() {
-                Toast.makeText(context, "开始", Toast.LENGTH_SHORT).show();
-            }
+            public void onStart() {}
 
             @Override
             public void onSuccess(int index, File compressFile) {
@@ -256,5 +246,108 @@ public class NSImageUtil {
         return result;
     }
 
+    /**
+     * 设置水印图片在左上角
+     * @param src
+     * @param watermark
+     * @param paddingLeft
+     * @param paddingTop
+     * @return
+     */
+    public static Bitmap createWaterMaskLeftTop(
+            Context context, Bitmap src, Bitmap watermark,
+            int paddingLeft, int paddingTop) {
+        return createWaterMaskBitmap(src, watermark,
+                NSDisplayUtil.dip2px(paddingLeft), NSDisplayUtil.dip2px(paddingTop));
+    }
 
+    /**
+     * 设置水印图片在右下角
+     * @param src
+     * @param watermark
+     * @param paddingRight
+     * @param paddingBottom
+     * @return
+     */
+    public static Bitmap createWaterMaskRightBottom(
+            Context context, Bitmap src, Bitmap watermark,
+            int paddingRight, int paddingBottom) {
+        return createWaterMaskBitmap(src, watermark,
+                src.getWidth() - watermark.getWidth() - NSDisplayUtil.dip2px( paddingRight),
+                src.getHeight() - watermark.getHeight() - NSDisplayUtil.dip2px( paddingBottom));
+    }
+
+    /**
+     * 设置水印图片到右上角
+     * @param src
+     * @param watermark
+     * @param paddingRight
+     * @param paddingTop
+     * @return
+     */
+    public static Bitmap createWaterMaskRightTop(
+            Context context, Bitmap src, Bitmap watermark,
+            int paddingRight, int paddingTop) {
+        return createWaterMaskBitmap( src, watermark,
+                src.getWidth() - watermark.getWidth() - NSDisplayUtil.dip2px( paddingRight),
+                NSDisplayUtil.dip2px( paddingTop));
+    }
+
+    /**
+     * 设置水印图片到左下角
+     * @param src
+     * @param watermark
+     * @param paddingLeft
+     * @param paddingBottom
+     * @return
+     */
+    public static Bitmap createWaterMaskLeftBottom(
+            Context context, Bitmap src, Bitmap watermark,
+            int paddingLeft, int paddingBottom) {
+        return createWaterMaskBitmap(src, watermark, NSDisplayUtil.dip2px( paddingLeft),
+                src.getHeight() - watermark.getHeight() - NSDisplayUtil.dip2px( paddingBottom));
+    }
+
+    /**
+     * 设置水印图片到中间
+     * @param src
+     * @param watermark
+     * @return
+     */
+    public static Bitmap createWaterMaskCenter(Bitmap src, Bitmap watermark) {
+        return createWaterMaskBitmap(src, watermark,
+                (src.getWidth() - watermark.getWidth()) / 2,
+                (src.getHeight() - watermark.getHeight()) / 2);
+    }
+
+
+    /**
+     * 绘制水印图片
+     * @param src 原图
+     * @param watermark 水印
+     * @param paddingLeft
+     * @param paddingTop
+     * @return
+     */
+    private static Bitmap createWaterMaskBitmap(Bitmap src, Bitmap watermark,
+                                                int paddingLeft, int paddingTop) {
+        if (src == null) {
+            return null;
+        }
+        int width = src.getWidth();
+        int height = src.getHeight();
+        //创建一个bitmap
+        Bitmap newb = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);// 创建一个新的和SRC长度宽度一样的位图
+        //将该图片作为画布
+        Canvas canvas = new Canvas(newb);
+        //在画布 0，0坐标上开始绘制原始图片
+        canvas.drawBitmap(src, 0, 0, null);
+        //在画布上绘制水印图片
+        canvas.drawBitmap(watermark, paddingLeft, paddingTop, null);
+        // 保存
+        canvas.save();
+        // 存储
+        canvas.restore();
+        return newb;
+    }
 }

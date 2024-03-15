@@ -96,7 +96,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     compileOnly project(path: ':Cordova')
-
+    compileOnly 'com.google.code.gson:gson:2.10.1'
     compileOnly 'com.google.zxing:core:3.3.3'
     // PictureSelector 基础 (必须)
     compileOnly 'io.github.lucksiege:pictureselector:v3.10.7'

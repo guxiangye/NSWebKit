@@ -1,5 +1,7 @@
-import {Core, NSExecSync} from "../plugins/ns.core"
+import {Core, NSExecSyncInterFace} from "../plugins/ns.core"
 import {GenericCallbackFunc} from "../plugins/ns.basic";
+
+declare var NSExecSync: NSExecSyncInterFace;
 
 const core: Core = <Core>{
     initialized: false,
@@ -84,7 +86,7 @@ const core: Core = <Core>{
             }
             return result;
         } else {
-            let result: JSON = NSExecSync.syncExec(pluginName, apiName, arr);
+            let result: JSON = NSExecSync.syncExec(pluginName, apiName, JSON.stringify(arr));
             if (typeof result == "string") {
                 return JSON.parse(result);
             }

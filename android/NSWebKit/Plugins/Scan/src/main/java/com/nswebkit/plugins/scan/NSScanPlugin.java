@@ -134,7 +134,6 @@ public class NSScanPlugin extends CordovaPlugin {
                                         }
                                     }
                                     callbackObject.put("scanType", resultType);
-                                    Toast.makeText(activity, resultSuccess, Toast.LENGTH_SHORT).show();
                                     callbackContext.success(callbackObject);
                                 } catch (JSONException e) {
                                     e.printStackTrace();

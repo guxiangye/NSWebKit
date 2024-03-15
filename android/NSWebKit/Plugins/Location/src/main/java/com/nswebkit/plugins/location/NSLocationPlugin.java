@@ -228,8 +228,8 @@ public class NSLocationPlugin extends CordovaPlugin {
         for (int r : grantResults) {
             if (r == PackageManager.PERMISSION_DENIED && null != this.callbackContext) {
 
-                callbackObject.put("errCode", -1);
-                callbackObject.put("errorMsg", "未获取到定位权限");
+                callbackObject.put("errCode", -1000);
+                callbackObject.put("errorMsg", "未获取到定位权限，请检查!");
                 this.callbackContext.success(callbackObject);
                 return;
             }

@@ -88,6 +88,7 @@ public class NSCustomCameraPlugin extends CordovaPlugin {
                 @Override
                 public void onSuccess(String base64) {
                     try {
+                        callbackObject.put("errCode", 0);
                         callbackObject.put("errorMsg", "success");
                         callbackObject.put("base64Image", base64);
                         callbackContext.success(callbackObject);

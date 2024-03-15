@@ -1,0 +1,1 @@
+import{_ as e,o,c as s,f as t}from"./index-BB6LMXso.js";const c={},n={class:"nav"},_=t("h1",null,"other",-1),a=[_];function r(d,i){return o(),s("div",n,a)}const l=e(c,[["render",r]]);export{l as default};
